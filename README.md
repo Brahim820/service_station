@@ -1,5 +1,16 @@
-# About the progress of this module at this stage.
+# About
 
-The model works as expected for this stage, you can create a station add a pump and configure te pump's nozzles.
+This module is supposed to be an extension of sales though independently. <br/>
+Manage a service station sales from this module by creating daily sales records.<br/>
 
-The station sales module can read the pump values and the payment methods below can read calculate and update the values correctly.
+Create invoices from this sales and reconcile them in Accounting module.<br/>
+The module will adjust inventory every time a sale record is validated. <br/>
+
+# Reporting
+
+The module utilizes odoo inbuilt reporting functionality. You can create and print sale reports from the module.
+
+# Installation
+
+Download or clone this module and install it in your addons/ custom-addons/ local-addons folder. <br/>
+Install it in Odoo and you're good to go.
