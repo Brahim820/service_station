@@ -1,0 +1,47 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_service_station,Station Access Sales,model_station_sales,service_station_group_user,1,1,1,0
+access_service_station,Station Access Sales,model_station_sales,service_station_group_manager,1,1,1,1
+
+access_service_station_nozzle_record_line,Station Access Nozzle Records,model_nozzle_record_line,service_station_group_user,1,1,1,0
+access_service_station_nozzle_record_line,Station Access Nozzle Records,model_nozzle_record_line,service_station_group_user,1,1,1,1
+
+access_service_station_visa_line,Station Access visa,model_visa_line,service_station_group_user,1,1,1,0
+access_service_station_visa_line,Station Access visa,model_visa_line,service_station_group_manager,1,1,1,1
+
+access_service_station_shell_pos_line,Station Access Pos,model_shell_pos_line,service_station_group_user,1,1,1,0
+access_service_station_shell_pos_line,Station Access Pos,model_shell_pos_line,service_station_group_manager,1,1,1,1
+
+access_service_station_loyalty_cards_line,Station Access Loyalty,model_loyalty_cards_line,service_station_group_user,1,1,1,0
+access_service_station_loyalty_cards_line,Station Access Loyalty,model_loyalty_cards_line,service_station_group_manager,1,1,1,1
+
+access_service_station_mpesa_line,Station Access Mpesa,model_mpesa_line,service_station_group_user,1,1,1,0
+access_service_station_mpesa_line,Station Access Mpesa,model_mpesa_line,service_station_group_manager,1,1,1,1
+
+access_service_station_invoices_line,Station Access Invoices,model_invoices_line,service_station_group_user,1,1,1,0
+access_service_station_invoices_line,Station Access Invoices,model_invoices_line,service_station_group_manager,1,1,1,1
+
+access_service_station_drop_line,Station Access Drop,model_drop_line,service_station_group_user,1,1,1,0
+access_service_station_drop_line,Station Access Drop,model_drop_line,service_station_group_manager,1,1,1,1
+
+access_service_station_pump,Station Access Pump,model_station_pump,service_station_group_user,1,1,1,0
+access_service_station_pump,Station Access Pump,model_station_pump,service_station_group_manager,1,1,1,1
+
+access_service_station_stations,Station Access Station,model_station_stations,service_station_group_user,1,1,1,0
+access_service_station_stations,Station Access Station,model_station_stations,service_station_group_manager,1,1,1,1
+
+access_service_station_nozzles,Station Access Nozzles,model_station_nozzles,service_station_group_user,1,1,1,0
+access_service_station_nozzles,Station Access Nozzles,model_station_nozzles,service_station_group_manager,1,1,1,1
+
+access_service_station_csa,Station Access CSA,model_station_csa,service_station_group_user,1,1,1,0
+access_service_station_csa,Station Access CSA,model_station_csa,service_station_group_manager,1,1,1,1
+
+access_service_station_settings,Station Access Settings,model_station_settings,service_station_group_manager,1,1,1,1
+
+access_service_station_misc,Station Access Miscelleneous,model_station_misc,service_station_group_user,1,1,1,0
+access_service_station_misc,Station Access Miscelleneous,model_station_misc,service_station_group_manager,1,1,1,1
+
+access_station_nozzle_misc,Nozzle Access Miscelleneous,model_nozzle_misc,service_station_group_user,1,1,1,0
+access_station_nozzle_misc,Nozzle Access Miscelleneous,model_nozzle_misc,service_station_group_manager,1,1,1,1
+
+access_station_csa_short_line,Csa Short Line,model_csa_short_line,,1,1,1,1
+access_station_csa_history_line,Csa History Line,model_csa_history_line,,1,1,1,1

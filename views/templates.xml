@@ -1,0 +1,48 @@
+<!-- <group name="group_big">
+    <group name="group_left">
+        <span>
+            <strong>VP1</strong>
+        </span>
+        <field name="mclose"/>
+        <field name="eclose"/>
+        <field name="eopen"/>
+        <field name="ltrs"/>
+        <field name="price"/>
+        <field name="amount"/>
+    </group>
+    <group name="group_left">
+        <span>
+            <strong>VP2</strong>
+        </span>
+        <field name="mclose"/>
+        <field name="eclose"/>
+        <field name="eopen"/>
+        <field name="ltrs"/>
+        <field name="price"/>
+        <field name="amount"/>
+    </group>
+</group>
+<group name="group_big">
+    <group name="group_left">
+        <span>
+            <strong>UX1</strong>
+        </span>
+        <field name="mclose"/>
+        <field name="eclose"/>
+        <field name="eopen"/>
+        <field name="ltrs"/>
+        <field name="price"/>
+        <field name="amount"/>
+    </group>
+    <group name="group_left">
+        <span>
+            <strong>UX2</strong>
+        </span>
+        <field name="mclose"/>
+        <field name="eclose"/>
+        <field name="eopen"/>
+        <field name="ltrs"/>
+        <field name="price"/>
+        <field name="amount"/>
+    </group>
+</group> -->

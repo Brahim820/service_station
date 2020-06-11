@@ -1,0 +1,491 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data noupdate="0">
+        <template id="report_visa_sales_form">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="doc">
+                    <table class="table mt16 table-sm o_main_table" border="1" style="width:100%;">
+                        <thead>
+                            <tr>
+                                <th name="th_visa_code" class="text-left">Code</th>
+                                <th name="th_visa_customer" class="text-right">Customer</th>
+                                <th name="th_visa_amount" class="text-right">Amount</th>
+                            </tr>
+                        </thead>
+                        <tbody class="sale_tbody">
+                            <t t-set="amount" t-value="0"/>
+                            <t t-set="total" t-value="0"/>
+
+                            <t t-foreach="o.visa_line" t-as="line">
+                                <t t-set="amount" t-value="amount + line.amount"/>
+                                <t t-set="total" t-value="0 + o.visa_total"/>
+
+                                <tr t-att-class="'bg-200 font-weight-bold o_line_section'">
+                                    <td name="td_code" style="padding: 5px;">
+                                        <span t-field="line.code"/>
+                                    </td>
+                                    <td name="td_customer" class="text-right">
+                                        <span t-field="line.customer"/>
+                                    </td>
+                                    <td name="td_amount" class="text-right">
+                                        <span t-esc="'{:,.2f}'.format(line.amount)"/>
+                                    </td>
+                                </tr>
+                            </t>
+                        </tbody>
+                    </table>
+                    <div class="row">
+                        <div style="padding: 30px; font-size:20px; margin-left: 60%;">
+                            <hr/>
+                            <strong>Visa Total: </strong>
+                            <span t-esc="'{:,.2f}'.format(total)"/>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </template>
+
+        <template id="report_shell_pos_sales_form">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="doc">
+                    <table class="table mt16 table-sm o_main_table" border="1" style="width:100%;">
+                        <thead>
+                            <tr>
+                                <th name="th_shell_code" class="text-right">Code</th>
+                                <th name="th_shell_customer" class="text-right">Customer</th>
+                                <th name="th_shell_amount" class="text-left">Amount</th>
+                            </tr>
+                        </thead>
+                        <tbody class="sale_tbody">
+                            <t t-set="amount" t-value="0"/>
+                            <t t-set="total" t-value="0"/>
+
+                            <t t-foreach="o.shell_pos_line" t-as="line">
+                                <t t-set="amount" t-value="amount + line.amount"/>
+                                <t t-set="total" t-value="0 + o.shell_pos_total"/>
+
+                                <tr t-att-class="'bg-200 font-weight-bold o_line_section'">
+                                    <td name="td_shell_code" style="padding: 5px;">
+                                        <span t-field="line.code"/>
+                                    </td>
+                                    <td name="td_shell_customer" class="text-right">
+                                        <span t-field="line.customer"/>
+                                    </td>
+                                    <td name="td_shell_amount" class="text-right">
+                                        <span t-esc="'{:,.2f}'.format(line.amount)"/>
+
+                                    </td>
+                                </tr>
+                            </t>
+                        </tbody>
+                    </table>
+                    <div class="row">
+                        <div style="padding: 30px; font-size:20px; margin-left: 60%;">
+                            <hr/>
+                            <strong>Shell Pos Total: </strong>
+                            <span t-esc="'{:,.2f}'.format(total)"/>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </template>
+
+        <template id="report_loyalty_card_sales_form">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="doc">
+                    <table class="table mt16 table-sm o_main_table" border="1" style="width:100%;">
+                        <thead>
+                            <tr>
+                                <th name="th_loyalty_code" class="text-right">Code</th>
+                                <th name="th_loyalty_customer" class="text-right">Customer</th>
+                                <th name="th_loyalty_amount" class="text-left">Amount</th>
+                            </tr>
+                        </thead>
+                        <tbody class="sale_tbody">
+                            <t t-set="amount" t-value="0"/>
+                            <t t-set="total" t-value="0"/>
+
+                            <t t-foreach="o.loyalty_cards_line" t-as="line">
+                                <t t-set="amount" t-value="amount + line.amount"/>
+                                <t t-set="total" t-value="0 + o.loyalty_cards_total"/>
+
+                                <tr t-att-class="'bg-200 font-weight-bold o_line_section'">
+                                    <td name="td_loyalty_code" style="padding: 5px;">
+                                        <span t-field="line.code"/>
+                                    </td>
+                                    <td name="td_loyalty_customer" class="text-right">
+                                        <span t-field="line.customer"/>
+                                    </td>
+                                    <td name="td_loyalty_amount" class="text-right">
+                                        <span t-esc="'{:,.2f}'.format(line.amount)"/>
+
+                                    </td>
+                                </tr>
+                            </t>
+                        </tbody>
+                    </table>
+
+                    <div class="row">
+                        <div style="padding: 30px; font-size:20px; margin-left: 60%;">
+                            <hr/>
+                            <strong>Loyalty Cards Total: </strong>
+                            <span t-esc="'{:,.2f}'.format(total)"/>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </template>
+
+        <template id="report_mpesa_sales_form">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="doc">
+                    <table class="table mt16 table-sm o_main_table" border="1" style="width:100%;">
+                        <thead>
+                            <tr>
+                                <th name="th_mpesa_code" class="text-right">Code</th>
+                                <th name="th_mpesa_customer" class="text-right">Customer</th>
+                                <th name="th_mpesa_amount" class="text-left">Amount</th>
+                            </tr>
+                        </thead>
+                        <tbody class="sale_tbody">
+                            <t t-set="amount" t-value="0"/>
+                            <t t-set="total" t-value="0"/>
+
+                            <t t-foreach="o.mpesa_line" t-as="line">
+                                <t t-set="amount" t-value="amount + line.amount"/>
+                                <t t-set="total" t-value="0 + o.mpesa_total"/>
+
+                                <tr t-att-class="'bg-200 font-weight-bold o_line_section'">
+                                    <td name="td_mpesa_code" style="padding: 5px;">
+                                        <span t-field="line.code"/>
+                                    </td>
+                                    <td name="td_mpesa_customer" class="text-right">
+                                        <span t-field="line.customer"/>
+                                    </td>
+                                    <td name="td_mpesa_amount" class="text-right">
+                                        <span t-esc="'{:,.2f}'.format(line.amount)"/>
+
+                                    </td>
+                                </tr>
+                            </t>
+                        </tbody>
+                    </table>
+                    <div class="row">
+                        <div style="padding: 30px; font-size:20px; margin-left: 60%;">
+                            <hr/>
+                            <strong>Mpesa Total: </strong>
+                            <span t-esc="'{:,.2f}'.format(total)"/>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </template>
+
+        <template id="report_invoices_sales_form">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="doc">
+                    <table class="table mt16 table-sm o_main_table" border="1" style="width:100%;">
+                        <thead>
+                            <tr>
+                                <th name="th_invoices_code" class="text-right">Code</th>
+                                <th name="th_invoices_customer" class="text-right">Customer</th>
+                                <th name="th_invoices_amount" class="text-left">Amount</th>
+                            </tr>
+                        </thead>
+                        <tbody class="sale_tbody">
+                            <t t-set="amount" t-value="0"/>
+                            <t t-set="total" t-value="0"/>
+
+                            <t t-foreach="o.invoices_line" t-as="line">
+                                <t t-set="amount" t-value="amount + line.amount"/>
+                                <t t-set="total" t-value="0 + o.invoices_total"/>
+
+                                <tr t-att-class="'bg-200 font-weight-bold o_line_section'">
+                                    <td name="td_invoices_code" style="padding: 5px;">
+                                        <span t-field="line.code"/>
+                                    </td>
+                                    <td name="td_invoices_customer" class="text-right">
+                                        <span t-field="line.partner_id"/>
+                                    </td>
+                                    <td name="td_invoices_amount" class="text-right">
+                                        <span t-esc="'{:,.2f}'.format(line.amount)"/>
+
+                                    </td>
+                                </tr>
+                            </t>
+                        </tbody>
+                    </table>
+                    <div class="row">
+                        <div style="padding: 30px; font-size:20px; margin-left: 60%;">
+                            <hr/>
+                            <strong>Invoices Total: </strong>
+                            <span t-esc="'{:,.2f}'.format(total)"/>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </template>
+
+        <template id="report_drop_sales_form">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="doc">
+                    <table class="table mt16 table-sm o_main_table" border="1" style="width:100%;">
+                        <thead>
+                            <tr>
+                                <th name="th_drop_code" class="text-right">Code</th>
+                                <th name="th_drop_customer" class="text-right">Customer</th>
+                                <th name="th_drop_amount" class="text-left">Amount</th>
+                            </tr>
+                        </thead>
+                        <tbody class="sale_tbody">
+                            <t t-set="amount" t-value="0"/>
+                            <t t-set="total" t-value="0"/>
+
+                            <t t-foreach="o.drop_line" t-as="line">
+                                <t t-set="amount" t-value="amount + line.amount"/>
+                                <t t-set="total" t-value="0 + o.drop_total"/>
+
+                                <tr t-att-class="'bg-200 font-weight-bold o_line_section'">
+                                    <td name="td_drop_code" style="padding: 5px;">
+                                        <span t-field="line.code"/>
+                                    </td>
+                                    <td name="td_drop_customer" class="text-right">
+                                        <span t-field="line.drop_by"/>
+                                    </td>
+                                    <td name="td_drop_amount" class="text-right">
+                                        <span t-esc="'{:,.2f}'.format(line.amount)"/>
+                                    </td>
+                                </tr>
+                            </t>
+                        </tbody>
+                    </table>
+                    <div class="row">
+                        <div style="padding: 30px; font-size:20px; margin-left: 60%;">
+                            <hr/>
+                            <strong>Cash Drop Total: </strong>
+                            <span t-esc="'{:,.2f}'.format(total)"/>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </template>
+
+        <template id="station_sales_report">
+            <t t-call="web.html_container">
+
+                <t t-foreach="docs" t-as="o">
+                    <div class="page">
+                        <div class="oe_structure">
+                            <div class="row">
+                                <span class="mt16" style="margin-right:90px; font-size: 20px;">
+                                    <strong> CSA : </strong>
+                                    <span t-field="o.csa_id"/>
+                                </span>
+                                <span class="mt16" style="margin-right: 90px; font-size: 20px;">
+                                    <strong> Pump : </strong>
+                                    <span t-field="o.pump"/>
+                                </span>
+                                <span class="mt16" style="font-size: 20px;">
+                                    <strong> Date : </strong>
+                                    <span t-field="o.date"/>
+                                </span>
+                            </div>
+
+                            <div class="row" style="margin-top: 30px;">
+                                <table class="table mt16 table-sm o_main_table" border="1" style="width:100%;">
+                                    <thead>
+                                        <tr>
+                                            <th name="th_nozzle" class="text-left" style="padding: 5px;">Nozzle</th>
+                                            <th name="th_mclose" class="text-right">Manual Close</th>
+                                            <th name="th_eclose" class="text-right">Electric Close</th>
+                                            <th name="th_eopen" class="text-right">Electric Open</th>
+                                            <th name="th_eopen" class="text-right">Litres</th>
+                                            <th name="th_eopen" class="text-right">Price</th>
+                                            <th name="th_eopen" class="text-right">Amount</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="sale_tbody">
+                                        <t t-set="fuel_sales" t-value="0"/>
+
+                                        <t t-foreach="o.nozzle_record_line" t-as="line">
+                                            <t t-set="fuel_sales" t-value="fuel_sales + line.amount"/>
+
+                                            <tr t-att-class="'bg-200 font-weight-bold o_line_section'">
+                                                <td name="td_nozzle" style="padding: 5px;">
+                                                    <span t-field="line.nozzle_id"/>
+                                                </td>
+                                                <td name="td_mclose" class="text-right">
+                                                    <span t-field="line.mclose"/>
+                                                </td>
+                                                <td name="td_eclose" class="text-right">
+                                                    <span t-field="line.eclose"/>
+                                                </td>
+                                                <td name="td_eopen" class="text-right">
+                                                    <span t-field="line.eopen"/>
+                                                </td>
+                                                <td name="td_ltrs" class="text-right">
+                                                    <span t-field="line.ltrs"/>
+                                                </td>
+                                                <td name="td_price" class="text-right">
+                                                    <span t-field="line.price"/>
+                                                </td>
+                                                <td name="td_amount" class="text-right o_price_total">
+                                                    <span t-esc="'{:,.2f}'.format(line.amount)"/>
+                                                </td>
+                                            </tr>
+                                        </t>
+
+                                    </tbody>
+                                </table>
+                                <div class="row">
+                                    <div style="padding: 30px; font-size:20px; margin-left: 60%;">
+                                        <hr/>
+                                        <strong>Fuel Sales: </strong>
+                                        <span t-esc="'{:,.2f}'.format(fuel_sales)"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row" style="margin-top: 50px;">
+                                <span>
+                                    <h3>Visa Records</h3>
+                                </span>
+                                <t t-call="service_station.report_visa_sales_form"/>
+                            </div>
+
+                            <div class="row" style="margin-top: 50px;">
+                                <span>
+                                    <h3>Shell Pos Records</h3>
+                                </span>
+                                <t t-call="service_station.report_shell_pos_sales_form"/>
+                            </div>
+
+                            <div class="row" style="margin-top: 50px;">
+                                <span>
+                                    <h3> Loyalty Cards Records</h3>
+                                </span>
+                                <t t-call="service_station.report_loyalty_card_sales_form"/>
+                            </div>
+
+                            <div class="row" style="margin-top: 50px;">
+                                <span>
+                                    <h3>Mpesa Records</h3>
+                                </span>
+                                <t t-call="service_station.report_mpesa_sales_form"/>
+                            </div>
+
+                            <div class="row" style="margin-top: 50px;">
+                                <span>
+                                    <h3>Invoices Records</h3>
+                                </span>
+                                <t t-call="service_station.report_invoices_sales_form"/>
+                            </div>
+
+                            <div class="row" style="margin-top: 50px;">
+                                <span>
+                                    <h3>Cash Drop Records</h3>
+                                </span>
+                                <t t-call="service_station.report_drop_sales_form"/>
+                            </div>
+
+                            <div class="row" style="margin-top: 50px;">
+                                <table class="table mt16 table-sm o_main_table" border="1" style="width:100%;">
+                                    <thead>
+                                        <th name="th_information" class="text-left" style="padding: 5px;">Information</th>
+                                        <th name="th_amount" class="text-left">Amount</th>
+                                    </thead>
+                                    <tbody>
+                                        <t t-set="cash_required" t-value="0"/>
+                                        <t t-set="drop_total" t-value="0"/>
+                                        <t t-set="amount_total" t-value="0"/>
+                                        <t t-set="short_or_excess" t-value="0"/>
+                                        <t t-set="amount_untaxed" t-value="0"/>
+                                        <t t-set="amount_tax" t-value="0"/>
+                                        <t t-set="amount_total" t-value="0"/>
+
+                                        <t t-foreach="docs" t-as="doc">
+                                            <t t-set="cash_required" t-value="0 + doc.cash_required"/>
+                                            <t t-set="drop_total" t-value="0 + doc.drop_total"/>
+                                            <t t-set="amount_total" t-value="0 + doc.amount_total"/>
+                                            <t t-set="short_or_excess" t-value="0 + doc.short_or_excess"/>
+                                            <t t-set="amount_untaxed" t-value="0 + doc.amount_untaxed"/>
+                                            <t t-set="amount_tax" t-value="0 + doc.amount_tax"/>
+                                            <t t-set="amount_total" t-value="0 + doc.amount_total"/>
+                                            <tr>
+                                                <td>
+                                                    <span>Total credits</span>
+                                                </td>
+                                                <td>
+                                                    <span t-esc="'{:,.2f}'.format(amount_total)"/>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <span>Cash Drop</span>
+                                                </td>
+                                                <td>
+                                                    <span t-esc="'{:,.2f}'.format(drop_total)"/>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <span>Cash Required</span>
+                                                </td>
+                                                <td>
+                                                    <span t-esc="'{:,.2f}'.format(cash_required)"/>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <t t-if="short_or_excess &lt; 0">
+                                                    <td>
+                                                        <span>Short</span>
+                                                    </td>
+                                                    <td>
+                                                        <span t-esc="'{:,.2f}'.format(short_or_excess)"/>
+                                                    </td>
+                                                </t>
+                                                <t t-else="">
+                                                    <td>
+                                                        <span>Excess</span>
+                                                    </td>
+                                                    <td>
+                                                        <span t-esc="'{:,.2f}'.format(short_or_excess)"/>
+                                                    </td>
+                                                </t>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <strong>Amount Untaxed</strong>
+                                                </td>
+                                                <td>
+                                                    <strong t-esc="'{:,.2f}'.format(amount_untaxed)"/>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <strong>Tax Amount</strong>
+                                                </td>
+                                                <td>
+                                                    <strong t-esc="'{:,.2f}'.format(amount_tax)"/>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <strong>Total Amount</strong>
+                                                </td>
+                                                <td>
+                                                    <strong t-esc="'{:,.2f}'.format(amount_total)"/>
+                                                </td>
+                                            </tr>
+
+                                        </t>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </t>
+            </t>
+
+        </template>
+    </data>
+</odoo>

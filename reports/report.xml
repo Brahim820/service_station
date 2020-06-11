@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data noupdate="0">
+        <report id="action_report_station_sales" model="station.sales" string="Station Sales" report_type="qweb-pdf" name="service_station.station_sales_report" file="service_station.station_sales_report" />
+    </data>
+</odoo>
