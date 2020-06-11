@@ -25,6 +25,7 @@
         'security/security.xml',
         'security/ir.model.access.csv',
         'views/station_menu.xml',
+        'views/invoice_smart_button.xml',
         # 'wizards/wizard.xml',
         'views/station_sales.xml',
         'views/station_misc.xml',

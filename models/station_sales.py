@@ -12,53 +12,8 @@ class StationSales(models.Model):
     _order = 'id desc'
 
     # DELETE THIS FUNCTION WHEN YOU ARE DONE, THIS IS A TESTING FXN
-    # def test(self):
-    #     payment_lines = ['visa_line', 'loyalty_cards_line',
-    #                      'shell_pos_line', 'mpesa_line', 'drop_line']
-    #     for record in payment_lines:
-    #         if record == 'drop_line':
-    #             for rec in self.drop_line:
-    #                 invoice_vals = {
-    #                     'partner_id': '',
-    #                     'type': 'out_invoice',
-    #                     'invoice_user_id': self.csa_id and self.csa_id.id,
-    #                     'state': 'draft',
-    #                     'invoice_date': self.date,
-    #                     'invoice_payment_term_id': 1,
-    #                     'invoice_line_ids': [5, 0, 0, {
-    #                         'name': line.code,
-    #                         'account_id': 2,
-    #                         'analytic_account_id': 1,
-    #                         'quantity': 1,
-    #                         'price_unit': line.amount,
-    #                     }]
-    #                 }
-    #                 print('[invoice vals==============]', invoice_vals)
-
-    #         else:
-    #             for line in self[record]:
-    #                 invoice_vals = {
-    #                     'partner_id': line.partner_id.id,
-    #                     'type': 'out_invoice',
-    #                     'invoice_user_id': self.csa_id and self.csa_id.id,
-    #                     'state': 'draft',
-    #                     'invoice_date': self.date,
-    #                     'invoice_payment_term_id': 1,
-    #                     'invoice_line_ids': [5, 0, 0, {
-    #                         'name': line.code,
-    #                         'account_id': 2,
-    #                         'analytic_account_id': 1,
-    #                         'quantity': 1,
-    #                         'price_unit': line.amount,
-    #                     }]
-    #                 }
-    #                 print('[invoice vals==============]', invoice_vals)
-    # invoice = self.env['account.move'].sudo().create(invoice_vals)
-
-    # for rec in self.env['station.nozzles'].search([]):
-    #     print('nozzle ids:', rec.name.id)
-    # for rec in self.nozzle_record_line:
-    #     print('nozzle line:', rec.nozzle_id.inherited_id)
+    def test(self):
+        pass
 
     def reset_to_draft(self):
         self.write({'state': 'draft'})
