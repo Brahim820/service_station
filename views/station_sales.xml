@@ -86,7 +86,7 @@
                         <button class="oe_highlight" name="approve_fuel_Sales" type="object" string="Approve" state="draft" attrs="{'invisible': [('state', '!=', 'draft')]}" />
                         <button class="oe_highlight" name="generate_sale_invoices" type="object" string="Generate Invoices" state="approved" attrs="{'invisible': [('state', '!=', 'approved')]}" groups="service_station.service_station_group_manager" />
                         <button name="reset_to_draft" type="object" string="Cancel" state="invoiced" attrs="{'invisible': [('state', '!=', 'invoiced')]}" />
-                        <button name="test" type="object" string="Test" />
+                        <!-- <button name="test" type="object" string="Test" /> -->
                         <field name="state" widget="statusbar" statusbar_visible="draft,approved,invoiced" readonly="1" />
                     </header>
                     <sheet>
@@ -101,8 +101,6 @@
                                 <field name="csa_id" />
                                 <field name="pump" />
                                 <field name="shift_id" />
-                                <!-- <field name="company_id" invisible="1" /> -->
-
                                 <!-- <field name="choices" widget='radio' /> -->
                             </group>
                             <group></group>

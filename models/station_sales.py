@@ -1,12 +1,8 @@
 # -*- coding: utf-8 -*-
+
 from datetime import datetime
 from odoo import models, fields, api, _
 from odoo.exceptions import ValidationError
-import json
-
-
-class AccountMove(models.Model):
-    _inherit = 'account.move'
 
 
 class StationSales(models.Model):
@@ -33,98 +29,43 @@ class StationSales(models.Model):
 
     def prepare_invoice_lines(self):
         invoice_val_dicts = []
-        for line in self.visa_line:
-            invoice_val_list = self._prepare_invoice()
-            invoice_val_list['partner_id'] = line.partner_id.id
-            invoice_val_list['invoice_partner_bank_id'] = line.partner_id.bank_ids[:1].id,
-            invoice_val_list['invoice_line_ids'] = [0, 0, {
-                'name': line.code,
-                'account_id': 1,
-                'quantity': 1,
-                'price_unit': line.amount,
-            }]
-            invoice_val_dicts.append(invoice_val_list)
-        for line in self.mpesa_line:
-            invoice_val_list = self._prepare_invoice()
-            invoice_val_list['partner_id'] = line.partner_id.id
-            invoice_val_list['invoice_partner_bank_id'] = line.partner_id.bank_ids[:1].id,
-            invoice_val_list['invoice_line_ids'] = [0, 0, {
-                'name': line.code,
-                'account_id': 1,
-                'quantity': 1,
-                'price_unit': line.amount,
-            }]
-            invoice_val_dicts.append(invoice_val_list)
-        for line in self.shell_pos_line:
-            invoice_val_list = self._prepare_invoice()
-            invoice_val_list['partner_id'] = line.partner_id.id
-            invoice_val_list['invoice_partner_bank_id'] = line.partner_id.bank_ids[:1].id,
-            invoice_val_list['invoice_line_ids'] = [0, 0, {
-                'name': line.code,
-                'account_id': 1,
-                'quantity': 1,
-                'price_unit': line.amount,
-            }]
-            invoice_val_dicts.append(invoice_val_list)
-        for line in self.loyalty_cards_line:
-            invoice_val_list = self._prepare_invoice()
-            invoice_val_list['partner_id'] = line.partner_id.id
-            invoice_val_list['invoice_partner_bank_id'] = line.partner_id.bank_ids[:1].id,
-            invoice_val_list['invoice_line_ids'] = [0, 0, {
-                'name': line.code,
-                'account_id': 1,
-                'quantity': 1,
-                'price_unit': line.amount,
-            }]
-            invoice_val_dicts.append(invoice_val_list)
-        for line in self.invoices_line:
-            invoice_val_list = self._prepare_invoice()
-            invoice_val_list['partner_id'] = line.partner_id.id
-            invoice_val_list['invoice_partner_bank_id'] = line.partner_id.bank_ids[:1].id,
-            invoice_val_list['invoice_line_ids'] = [0, 0, {
-                'name': line.code,
-                'account_id': 1,
-                'quantity': 1,
-                'price_unit': line.amount,
-            }]
-            invoice_val_dicts.append(invoice_val_list)
-        # for line in self.drop_line:
-        #     invoice_val_list = self._prepare_invoice()
-        #     invoice_val_list['partner_id'] = ''
-        #     # invoice_val_list['invoice_partner_bank_id'] = line.partner_id.bank_ids[:1].id,
-        #     invoice_val_list['invoice_line_ids'] = [0, 0, {
-        #         'name': line.code,
-        #         'account_id': 1,
-        #         'quantity': 1,
-        #         'price_unit': line.amount,
-        #     }]
-        #     invoice_val_dicts.append(invoice_val_list)
+        payment_lines = ['visa_line', 'loyalty_cards_line',
+                         'shell_pos_line', 'mpesa_line', 'drop_line']
+
+        invoice_val_dicts = []
+        for record in payment_lines:
+            if record == 'drop_line':
+                me_id = self.env['res.partner'].search([('me_id', '=', True)])
+                for rec in self[record]:
+                    invoice_val_list = self._prepare_invoice()
+                    invoice_val_list['partner_id'] = me_id.id
+                    invoice_val_list['invoice_partner_bank_id'] = me_id.bank_ids[:1].id,
+                    invoice_val_list['invoice_line_ids'] = [0, 0, {
+                        'name': rec.code,
+                        'account_id': 1,
+                        'quantity': 1,
+                        'price_unit': rec.amount,
+                    }]
+                    invoice_val_dicts.append(invoice_val_list)
+            else:
+                for rec in self[record]:
+                    invoice_val_list = self._prepare_invoice()
+                    invoice_val_list['partner_id'] = rec.partner_id.id
+                    invoice_val_list['invoice_partner_bank_id'] = rec.partner_id.bank_ids[:1].id,
+                    invoice_val_list['invoice_line_ids'] = [0, 0, {
+                        'name': rec.code,
+                        'account_id': 1,
+                        'quantity': 1,
+                        'price_unit': rec.amount,
+                    }]
+                    invoice_val_dicts.append(invoice_val_list)
         return invoice_val_dicts
-
-    def test(self):
-        new_invoice_vals = self.prepare_test()
-        print(new_invoice_vals)
-        for record in new_invoice_vals:
-            self.env['account.move'].sudo().create(dict(record))
-
-    def reset_to_draft(self):
-        self.write({'state': 'draft'})
-
-    @ api.constrains('fuel_sales')
-    def approve_fuel_Sales(self):
-        for rec in self.nozzle_record_line:
-            for record in self.env['station.nozzles'].search([]):
-                record.write({'current_reading': rec.eclose}
-                             ) if record.id == rec.nozzle_id.id else None
-        if (self.fuel_sales == 0):
-            raise ValidationError('You cannot approve zero sales!')
-        else:
-            self.write({'state': 'approved'})
 
     def generate_sale_invoices(self):
         new_invoice_vals = self.prepare_invoice_lines()
         for record in new_invoice_vals:
             self.env['account.move'].sudo().create(dict(record))
+
         self.write({'state': 'invoiced'})
 
     def open_station_invoices(self):
@@ -142,6 +83,20 @@ class StationSales(models.Model):
         count = self.env['account.move'].search_count(
             [('source_id', '=', self.id)])
         self.invoices_count = count
+
+    def reset_to_draft(self):
+        self.write({'state': 'draft'})
+
+    @ api.constrains('fuel_sales')
+    def approve_fuel_Sales(self):
+        for rec in self.nozzle_record_line:
+            for record in self.env['station.nozzles'].search([]):
+                record.write({'current_reading': rec.eclose}
+                             ) if record.id == rec.nozzle_id.id else None
+        if (self.fuel_sales == 0):
+            raise ValidationError('You cannot approve zero sales!')
+        else:
+            self.write({'state': 'approved'})
 
     @ api.depends('nozzle_record_line.amount')
     def _compute_fuel_sales(self):
