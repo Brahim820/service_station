@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
-    <data noupdate="0">
+    <data noupdate="1">
 
         <record id="station_misc_seq" model="ir.sequence">
             <field name="name">Station Miscelleneous Sequence</field>
@@ -10,7 +10,7 @@
             <field name="company_id" eval="False" />
         </record>
 
-        <record id="sequence_beth_check" model="ir.sequence">
+        <record id="sequence_station_sales" model="ir.sequence">
             <field name="name">Station Sales Sequence</field>
             <field name="code">station.sales.sequence</field>
             <field name="prefix">SS</field>

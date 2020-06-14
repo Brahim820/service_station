@@ -24,12 +24,12 @@
     'data': [
         'security/security.xml',
         'security/ir.model.access.csv',
+        'data/sequence.xml',
         'views/station_menu.xml',
         'views/invoice_smart_button.xml',
         # 'wizards/wizard.xml',
         'views/station_sales.xml',
         'views/station_misc.xml',
-        'data/sequence.xml',
         'views/service_station.xml',
         'reports/station_sale_report.xml',
         'reports/report.xml',
