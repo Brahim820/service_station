@@ -2,6 +2,11 @@
 from datetime import datetime
 from odoo import models, fields, api, _
 from odoo.exceptions import ValidationError
+import json
+
+
+class AccountMove(models.Model):
+    _inherit = 'account.move'
 
 
 class StationSales(models.Model):
@@ -11,14 +16,101 @@ class StationSales(models.Model):
     _rec_name = 'pump'
     _order = 'id desc'
 
-    # DELETE THIS FUNCTION WHEN YOU ARE DONE, THIS IS A TESTING FXN
+    def _prepare_invoice(self):
+        journal = self.env['account.move'].with_context(
+            default_type='out_invoice')._get_default_journal()
+
+        invoice_vals = {
+            'type': 'out_invoice',
+            'invoice_user_id': self.csa_id and self.csa_id.id,
+            'source_id': self.id,
+            'journal_id': journal.id,
+            'state': 'draft',
+            'invoice_date': self.date,
+            'invoice_line_ids': []
+        }
+        return invoice_vals
+
+    def prepare_invoice_lines(self):
+        invoice_val_dicts = []
+        for line in self.visa_line:
+            invoice_val_list = self._prepare_invoice()
+            invoice_val_list['partner_id'] = line.partner_id.id
+            invoice_val_list['invoice_partner_bank_id'] = line.partner_id.bank_ids[:1].id,
+            invoice_val_list['invoice_line_ids'] = [0, 0, {
+                'name': line.code,
+                'account_id': 1,
+                'quantity': 1,
+                'price_unit': line.amount,
+            }]
+            invoice_val_dicts.append(invoice_val_list)
+        for line in self.mpesa_line:
+            invoice_val_list = self._prepare_invoice()
+            invoice_val_list['partner_id'] = line.partner_id.id
+            invoice_val_list['invoice_partner_bank_id'] = line.partner_id.bank_ids[:1].id,
+            invoice_val_list['invoice_line_ids'] = [0, 0, {
+                'name': line.code,
+                'account_id': 1,
+                'quantity': 1,
+                'price_unit': line.amount,
+            }]
+            invoice_val_dicts.append(invoice_val_list)
+        for line in self.shell_pos_line:
+            invoice_val_list = self._prepare_invoice()
+            invoice_val_list['partner_id'] = line.partner_id.id
+            invoice_val_list['invoice_partner_bank_id'] = line.partner_id.bank_ids[:1].id,
+            invoice_val_list['invoice_line_ids'] = [0, 0, {
+                'name': line.code,
+                'account_id': 1,
+                'quantity': 1,
+                'price_unit': line.amount,
+            }]
+            invoice_val_dicts.append(invoice_val_list)
+        for line in self.loyalty_cards_line:
+            invoice_val_list = self._prepare_invoice()
+            invoice_val_list['partner_id'] = line.partner_id.id
+            invoice_val_list['invoice_partner_bank_id'] = line.partner_id.bank_ids[:1].id,
+            invoice_val_list['invoice_line_ids'] = [0, 0, {
+                'name': line.code,
+                'account_id': 1,
+                'quantity': 1,
+                'price_unit': line.amount,
+            }]
+            invoice_val_dicts.append(invoice_val_list)
+        for line in self.invoices_line:
+            invoice_val_list = self._prepare_invoice()
+            invoice_val_list['partner_id'] = line.partner_id.id
+            invoice_val_list['invoice_partner_bank_id'] = line.partner_id.bank_ids[:1].id,
+            invoice_val_list['invoice_line_ids'] = [0, 0, {
+                'name': line.code,
+                'account_id': 1,
+                'quantity': 1,
+                'price_unit': line.amount,
+            }]
+            invoice_val_dicts.append(invoice_val_list)
+        # for line in self.drop_line:
+        #     invoice_val_list = self._prepare_invoice()
+        #     invoice_val_list['partner_id'] = ''
+        #     # invoice_val_list['invoice_partner_bank_id'] = line.partner_id.bank_ids[:1].id,
+        #     invoice_val_list['invoice_line_ids'] = [0, 0, {
+        #         'name': line.code,
+        #         'account_id': 1,
+        #         'quantity': 1,
+        #         'price_unit': line.amount,
+        #     }]
+        #     invoice_val_dicts.append(invoice_val_list)
+        return invoice_val_dicts
+
     def test(self):
-        pass
+        new_invoice_vals = self.prepare_test()
+        print(new_invoice_vals)
+        for record in new_invoice_vals:
+            self.env['account.move'].sudo().create(dict(record))
 
     def reset_to_draft(self):
         self.write({'state': 'draft'})
 
-    @api.constrains('fuel_sales')
+    @ api.constrains('fuel_sales')
     def approve_fuel_Sales(self):
         for rec in self.nozzle_record_line:
             for record in self.env['station.nozzles'].search([]):
@@ -30,62 +122,9 @@ class StationSales(models.Model):
             self.write({'state': 'approved'})
 
     def generate_sale_invoices(self):
-        payment_lines = ['visa_line', 'loyalty_cards_line',
-                         'shell_pos_line', 'mpesa_line', 'drop_line']
-
-        for rec in self.env['station.csa'].search([]):
-            lines = []
-            vals = {
-                'date': self.date,
-                'description': 'short' if self.short_or_excess < 0 else 'excess',
-                'amount': self.short_or_excess,
-            }
-            lines.append((0, 0, vals))
-            rec.short_line = lines if self.csa_id.id == rec.id else None
-
-        for record in payment_lines:
-            if record == 'drop_line':
-                for line in self.drop_line:
-                    invoice_vals = {
-                        'partner_id': '',
-                        'type': 'out_invoice',
-                        'invoice_user_id': self.csa_id and self.csa_id.id,
-                        'state': 'draft',
-                        'source_id': self.id,
-                        'invoice_date': self.date,
-                        'invoice_payment_term_id': 1,
-                        'invoice_line_ids': [5, 0, 0, {
-                            'name': line.code,
-                            'account_id': 2,
-                            'analytic_account_id': 1,
-                            'quantity': 1,
-                            'price_unit': line.amount,
-                        }]
-                    }
-                    invoice = self.env['account.move'].sudo().create(
-                        invoice_vals)
-
-            else:
-                for line in self[record]:
-                    invoice_vals = {
-                        'partner_id': line.partner_id.id,
-                        'type': 'out_invoice',
-                        'invoice_user_id': self.csa_id and self.csa_id.id,
-                        'source_id': self.id,
-                        'state': 'draft',
-                        'invoice_date': self.date,
-                        'invoice_payment_term_id': 1,
-                        'invoice_line_ids': [5, 0, 0, {
-                            'name': line.code,
-                            'account_id': 2,
-                            'analytic_account_id': 1,
-                            'quantity': 1,
-                            'price_unit': line.amount,
-                        }]
-                    }
-                    invoice = self.env['account.move'].sudo().create(
-                        invoice_vals)
-
+        new_invoice_vals = self.prepare_invoice_lines()
+        for record in new_invoice_vals:
+            self.env['account.move'].sudo().create(dict(record))
         self.write({'state': 'invoiced'})
 
     def open_station_invoices(self):
@@ -101,28 +140,28 @@ class StationSales(models.Model):
 
     def get_invoices_count(self):
         count = self.env['account.move'].search_count(
-            [])
+            [('source_id', '=', self.id)])
         self.invoices_count = count
 
-    @api.depends('nozzle_record_line.amount')
+    @ api.depends('nozzle_record_line.amount')
     def _compute_fuel_sales(self):
         for record in self:
-            fuel_sales = 0.0
+            fuel_sales = 0
             for line in record.nozzle_record_line:
                 fuel_sales += line.amount
             record.update({'fuel_sales': fuel_sales})
         return fuel_sales
 
-    @api.depends('amount_tax', 'amount_untaxed')
+    @ api.depends('amount_tax', 'amount_untaxed')
     def _compute_taxes(self):
         for rec in self:
             amount = rec.amount_untaxed + \
                 (rec.amount_tax/100 * rec.amount_untaxed)
             rec.update({'amount_total': amount})
 
-    @api.depends('amount_untaxed', 'amount_tax', 'visa_line.amount', 'shell_pos_line.amount',
-                 'loyalty_cards_line.amount', 'mpesa_line.amount', 'drop_line.amount',
-                 'invoices_line.amount')
+    @ api.depends('amount_untaxed', 'amount_tax', 'visa_line.amount', 'shell_pos_line.amount',
+                  'loyalty_cards_line.amount', 'mpesa_line.amount', 'drop_line.amount',
+                  'invoices_line.amount')
     def _compute_total_amount(self):
         for record in self:
             visa_total = 0.0
@@ -176,7 +215,7 @@ class StationSales(models.Model):
             })
         print(short_or_excess_display)
 
-    @api.onchange('pump')
+    @ api.onchange('pump')
     def _onchange_pump_create_nozzles(self):
         for rec in self:
             lines = [(5, 0, 0)]
@@ -189,13 +228,13 @@ class StationSales(models.Model):
                 lines.append((0, 0, val))
             rec.nozzle_record_line = lines
 
-    @api.onchange('csa_id')
+    @ api.onchange('csa_id')
     def _onchange_csa_id_filter_pump(self):
         for rec in self:
             return {'domain':
                     {'pump': [('station_id', '=', rec.csa_id.station_id.id)]}}
 
-    @api.onchange('csa_id')
+    @ api.onchange('csa_id')
     def _onchange_csa_id_update_dropby(self):
         for rec in self:
             lines = [(5, 0, 0)]
@@ -256,9 +295,32 @@ class StationSales(models.Model):
         ('approved', 'To Be Invoiced'),
         ('invoiced', 'Invoiced'),
     ], string='Status', readonly=True, index=True, copy=False, default='draft', track_visibility='onchange')
-    shift_id = fields.Selection([
-        ('morning', 'Morning'),
-        ('night', 'Night')
-    ], string='Shift', required=True)
+    shift_id = fields.Selection(
+        [('morning', 'Morning'), ('night', 'Night')], string='Shift', required=True)
     invoices_count = fields.Integer(
         string='Invoices', compute="get_invoices_count")
+
+    # company_id = fields.Many2one(
+    #     'res.company', 'Company', required=True, index=True, default=lambda self: self.env.company)
+    # payment_term_id = fields.Many2one('account.payment.term', string='Payment Terms', check_company=True,
+    #                                   domain="['|', ('company_id', '=', False), ('company_id', '=', company_id)]",)
+    # pricelist_id = fields.Many2one('product.pricelist', string='Pricelist', check_company=True,
+    #                                readonly=True, domain="['|', ('company_id', '=', False), ('company_id', '=', company_id)]",)
+    # currency_id = fields.Many2one(
+    #     "res.currency", related='pricelist_id.currency_id', string="Currency", readonly=True, required=True)
+    # analytic_account_id = fields.Many2one('account.analytic.account', 'Analytic Account', readonly=True, copy=False,
+    #                                       check_company=True, domain="['|', ('company_id', '=', False), ('company_id', '=', company_id)]")
+
+    # choices = fields.Selection(string='Choice', selection=[
+    #                           ('metres', 'Metres'), ('litres', 'Litres'), ])
+
+    # transaction_ids = fields.Many2many('payment.transaction', 'sale_order_transaction_rel', 'sale_order_id', 'transaction_id',
+    #                                    string='Transactions', copy=False, readonly=True)
+    # authorized_transaction_ids = fields.Many2many('payment.transaction', compute='_compute_authorized_transaction_ids',
+    #                                               string='Authorized Transactions', copy=False, readonly=True)
+
+    # @api.depends('transaction_ids')
+    # def _compute_authorized_transaction_ids(self):
+    #     for trans in self:
+    #         trans.authorized_transaction_ids = trans.transaction_ids.filtered(
+    #             lambda t: t.state == 'authorized')

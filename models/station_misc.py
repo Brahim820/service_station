@@ -18,7 +18,7 @@ class Miscelleneous(models.Model):
     state = fields.Selection([
         ('draft', 'Draft'),
         ('locked', 'Locked')
-    ], string='Shift', required=True)
+    ], string='State', required=True)
     station_id = fields.Many2one(
         'station.stations', string='Station', required=True)
     pump_id = fields.Many2one('station.pump', string='Pump', required=True)
