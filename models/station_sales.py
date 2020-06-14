@@ -12,13 +12,22 @@ class StationSales(models.Model):
     _rec_name = 'pump'
     _order = 'id desc'
 
+    @api.model
+    def create(self, vals):
+        if vals.get('invoice_ref', _('New') == _('New')):
+            vals['invoice_ref'] = self.env['ir.sequence'].next_by_code(
+                'station.sales.sequence') or _('New')
+        result = super().create(vals)
+        return result
+
     def _prepare_invoice(self):
         journal = self.env['account.move'].with_context(
             default_type='out_invoice')._get_default_journal()
 
         invoice_vals = {
             'type': 'out_invoice',
-            'invoice_user_id': self.csa_id and self.csa_id.id,
+            'ref': self.invoice_ref,
+            'invoice_user_id': self.csa_id.id,
             'source_id': self.id,
             'journal_id': journal.id,
             'state': 'draft',
@@ -29,7 +38,7 @@ class StationSales(models.Model):
 
     def prepare_invoice_lines(self):
         invoice_val_dicts = []
-        payment_lines = ['visa_line', 'loyalty_cards_line',
+        payment_lines = ['visa_line', 'loyalty_cards_line', 'invoices_line',
                          'shell_pos_line', 'mpesa_line', 'drop_line']
 
         invoice_val_dicts = []
@@ -148,10 +157,11 @@ class StationSales(models.Model):
             for line in record.drop_line:
                 drop_total += line.amount
 
-            total_credits = visa_total + invoices_total + mpesa_total + shell_pos_total
+            total_credits = visa_total + invoices_total + \
+                mpesa_total + shell_pos_total + loyalty_cards_total
             cash_required = fuel_sales - total_credits
             short_or_excess = drop_total - cash_required
-            amount_untaxed = total_credits + loyalty_cards_total + drop_total
+            amount_untaxed = total_credits + drop_total
 
             short_or_excess_display = '{:+}'.format(short_or_excess)
 
@@ -254,6 +264,7 @@ class StationSales(models.Model):
         [('morning', 'Morning'), ('night', 'Night')], string='Shift', required=True)
     invoices_count = fields.Integer(
         string='Invoices', compute="get_invoices_count")
+    invoice_ref = fields.Char(string='Ref')
 
     # company_id = fields.Many2one(
     #     'res.company', 'Company', required=True, index=True, default=lambda self: self.env.company)
