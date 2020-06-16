@@ -86,22 +86,22 @@
                         <button class="oe_highlight" name="approve_fuel_Sales" type="object" string="Approve" state="draft" attrs="{'invisible': [('state', '!=', 'draft')]}" />
                         <button class="oe_highlight" name="generate_sale_invoices" type="object" string="Generate Invoices" state="approved" attrs="{'invisible': [('state', '!=', 'approved')]}" groups="service_station.service_station_group_manager" />
                         <button name="reset_to_draft" type="object" string="Cancel" state="invoiced" attrs="{'invisible': [('state', '!=', 'invoiced')]}" />
-                        <!-- <button name="test" type="object" string="Test" /> -->
+                        <button name="test" type="object" string="Test" />
                         <field name="state" widget="statusbar" statusbar_visible="draft,approved,invoiced" readonly="1" />
                     </header>
                     <sheet>
                         <div class="oe_button_box" name="button_box">
-
-                            <button name="%(open_station_invoices)d" type="action" class="oe_stat_button" icon="fa-pencil-square-o" attrs="{'invisible': [('invoices_count', '=', 0)]}">
+                            <button name="%(open_station_invoices)d" type="action" class="oe_stat_button" icon="fa-pencil-square-o">
                                 <field name="invoices_count" widget="statinfo" string="Invoices" />
                             </button>
+                            <!-- <button name="open_station_invoices" type="object" class="oe_stat_button" icon="fa-pencil-square-o"> <field name="invoices_count" widget="statinfo" string="Invoices" /> </button> -->
                         </div>
                         <group name="group_title" col="3" colspan="3">
                             <group>
                                 <field name="csa_id" />
                                 <field name="pump" />
                                 <field name="shift_id" />
-                                <!-- <field name="choices" widget='radio' /> -->
+                                <field name="sales_mode_id" widget='radio' invisible="1" />
                             </group>
                             <group></group>
                             <group>
@@ -112,14 +112,13 @@
                         </group>
 
                         <notebook>
-                            <!-- attrs="{'invisible': [('choices', '=', 'litres')]}" -->
                             <page string="Nozzle Records" name="nozzle_records">
                                 <field name="nozzle_record_line">
                                     <tree create="true" delete="true" edit="true" editable="bottom">
                                         <field name="nozzle_id" />
-                                        <field name="mclose" />
-                                        <field name="eclose" />
-                                        <field name="eopen" />
+                                        <field name="mclose" attrs="{'column_invisible': [('parent.sales_mode_id', '=', 'litres')]}" />
+                                        <field name="eclose" attrs="{'column_invisible': [('parent.sales_mode_id', '=', 'litres')]}" />
+                                        <field name="eopen" attrs="{'column_invisible': [('parent.sales_mode_id', '=', 'litres')]}" />
                                         <field name="ltrs" />
                                         <field name="price" />
                                         <field name="amount" />

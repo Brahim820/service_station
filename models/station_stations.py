@@ -9,6 +9,8 @@ class ServiceStation(models.Model):
 
     name = fields.Char(string='Station Name')
     manager = fields.Many2one('res.users', string='Manager')
+    sales_mode_id = fields.Selection(string='Mode Of Sales', selection=[
+        ('metres', 'Metres'), ('litres', 'Litres')], default="metres")
     pump_line = fields.One2many(
         'station.pump', 'station_id', string='Pump Line')
 

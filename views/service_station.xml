@@ -22,8 +22,13 @@
                 <form string="Stations form ">
                     <sheet>
                         <group>
-                            <field name="name" />
-                            <field name="manager" />
+                            <group>
+                                <field name="name" />
+                                <field name="manager" />
+                            </group>
+                            <group>
+                                <field name="sales_mode_id" widget="radio" />
+                            </group>
                         </group>
 
                         <notebook>
@@ -90,8 +95,7 @@
                                 <div class="o_kanban_record_bottom">
                                     <div class="oe_kanban_bottom_left"></div>
                                     <div class="oe_kanban_bottom_right">
-                                        <div class="o_kanban_inline_block">
-                                        </div>
+                                        <div class="o_kanban_inline_block"></div>
                                         <div class="o_kanban_inline_block">
                                             <field name="activity_ids" widget="kanban_activity" />
                                         </div>
@@ -261,5 +265,3 @@
 
     </data>
 </odoo>
-
-

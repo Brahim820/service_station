@@ -33,19 +33,13 @@ class NozzleRecordLine(models.Model):
             if rec.ltrs < 0 or rec.eopen < 0 or rec.eclose < 0:
                 raise ValidationError('No negative sales are allowed !')
 
-    # def get_choices(self):
-    #     if self.env['station.sales'].choices == 'metres':
-    #         self.choices == True
-    #     elif self.env['station.sales'].choices == 'litres':
-    #         self.choices = False
-
     nozzle_id = fields.Many2one(
         string='Nozzle', comodel_name='station.nozzles', required=True,
         domain=[('wet_product', '=', True)])
     mclose = fields.Float(string='Manual Close', digits=(12, 3))
     eclose = fields.Float(string='Elec. Close', digits=(12, 3), store=True)
     eopen = fields.Float(string='Elec. Open')
-    ltrs = fields.Float(string='Litres', readonly=True, store=True,
+    ltrs = fields.Float(string='Litres', store=True,
                         compute='_compute_ltrs', digits=(12, 3))
     price = fields.Float(string='Price')
     amount = fields.Float(string='Amount', readonly=True,
@@ -54,8 +48,6 @@ class NozzleRecordLine(models.Model):
     nozzle_record_id = fields.Many2one(
         comodel_name='station.sales', string='Station Sales Id')
     currency_id = fields.Many2one('res.currency')
-    # choices = fields.Boolean(
-    #     string='Choices', default=True, compute='get_choices')
 
 
 class VisaLine(models.Model):

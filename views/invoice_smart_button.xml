@@ -3,11 +3,12 @@
     <data noupdate="0">
         <!-- Open matching invoices matching a created record -->
         <record id="open_station_invoices" model="ir.actions.act_window">
-            <field name="name">Invoices</field>
+            <field name="name">Station Invoices</field>
             <field name="res_model">account.move</field>
             <field name="view_mode">tree,form</field>
-            <field name="domain">[('ref', '=', self.invoice_ref)]</field>
+            <field name="domain">[]</field>
             <field name="context">{}</field>
+            <!-- ('ref','=',self.invoice_ref) -->
         </record>
     </data>
 </odoo>

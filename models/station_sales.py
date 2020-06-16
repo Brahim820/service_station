@@ -12,6 +12,12 @@ class StationSales(models.Model):
     _rec_name = 'pump'
     _order = 'id desc'
 
+    def test(self):
+        records = self.env['account.move'].search([])
+        new_records = records.filtered(lambda rec: rec.ref == self.invoice_ref)
+        for rec in self:
+            print(rec.sales_mode_id)
+
     @api.model
     def create(self, vals):
         if vals.get('invoice_ref', _('New') == _('New')):
@@ -35,19 +41,23 @@ class StationSales(models.Model):
         }
         return invoice_vals
 
+    def _declare_payment_lines(self):
+
+        return ['visa_line', 'loyalty_cards_line',
+                'invoices_line', 'shell_pos_line', 'mpesa_line', 'drop_line']
+
     def prepare_invoice_lines(self):
         invoice_val_dicts = []
-        payment_lines = ['visa_line', 'loyalty_cards_line', 'invoices_line',
-                         'shell_pos_line', 'mpesa_line', 'drop_line']
-        invoice_val_dicts = []
+        payment_lines = self._declare_payment_lines()
 
         for record in payment_lines:
             if record == 'drop_line':
-                me_id = self.env['res.partner'].search([('me_id', '=', True)])
+                company_partner_id = self.env['res.partner'].search(
+                    [('me_id', '=', True)])
                 for rec in self[record]:
                     invoice_val_list = self._prepare_invoice()
-                    invoice_val_list['partner_id'] = me_id.id
-                    invoice_val_list['invoice_partner_bank_id'] = me_id.bank_ids[:1].id,
+                    invoice_val_list['partner_id'] = company_partner_id.id
+                    invoice_val_list['invoice_partner_bank_id'] = company_partner_id.bank_ids[:1].id,
                     invoice_val_list['invoice_line_ids'] = [0, 0, {
                         'name': rec.code,
                         'account_id': 1,
@@ -76,17 +86,6 @@ class StationSales(models.Model):
             self.env['account.move'].sudo().create(dict(record))
 
         self.write({'state': 'invoiced'})
-
-    def open_station_invoices(self):
-        return {
-            'name': _('Invoices'),
-            'domain': [('ref', '=', self.invoice_ref)],
-            'view_type': 'form',
-            'res.model': 'station.csa',
-            'view_id': False,
-            'view_mode': 'tree,form',
-            'type': 'ir.actions.act_window'
-        }
 
     def get_invoices_count(self):
         count = self.env['account.move'].search_count(
@@ -127,6 +126,9 @@ class StationSales(models.Model):
                  'loyalty_cards_line.amount', 'mpesa_line.amount', 'drop_line.amount',
                  'invoices_line.amount')
     def _compute_total_amount(self):
+        # payment_lines = self._declare_payment_lines()
+        # payment_totals = ['visa_total', 'shell_pos_total', 'mpesa_total','loyalty_cards_total','invoices_total','drop_total']
+
         for record in self:
             visa_total = 0.0
             shell_pos_total = 0.0
@@ -138,6 +140,9 @@ class StationSales(models.Model):
             total_credits = 0.0
             cash_required = 0.0
             short_or_excess = 0.0
+
+            # for rec in payment_lines:
+            #     for line in record[rec]:
 
             for line in record.visa_line:
                 visa_total += line.amount
@@ -201,14 +206,15 @@ class StationSales(models.Model):
     @api.onchange('csa_id')
     def _onchange_csa_id_update_dropby(self):
         for rec in self:
+            # THIS WILL CLEAR LINES INCASE CSA CHANGES, OTHERWISE IT WILL ADD NEW CSA TO NEXT LINE
             lines = [(5, 0, 0)]
-            for line in self.csa_id:
-                rec.station_id = self.csa_id.station_id
-                val = {
-                    'code': '0000',
-                    'drop_by': self.csa_id
-                }
-                lines.append((0, 0, val))
+            rec.station_id = self.csa_id.station_id
+            rec.sales_mode_id = self.station_id.sales_mode_id
+            val = {
+                'code': '0000',
+                'drop_by': self.csa_id
+            }
+            lines.append((0, 0, val))
             rec.drop_line = lines
 
     station_id = fields.Many2one(
@@ -264,6 +270,8 @@ class StationSales(models.Model):
     invoices_count = fields.Integer(
         string='Invoices', compute="get_invoices_count")
     invoice_ref = fields.Char(string='Ref')
+    sales_mode_id = fields.Selection(string='Choice', selection=[
+        ('metres', 'Metres'), ('litres', 'Litres'), ])
 
     # company_id = fields.Many2one(
     #     'res.company', 'Company', required=True, index=True, default=lambda self: self.env.company)
@@ -275,9 +283,6 @@ class StationSales(models.Model):
     #     "res.currency", related='pricelist_id.currency_id', string="Currency", readonly=True, required=True)
     # analytic_account_id = fields.Many2one('account.analytic.account', 'Analytic Account', readonly=True, copy=False,
     #                                       check_company=True, domain="['|', ('company_id', '=', False), ('company_id', '=', company_id)]")
-
-    # choices = fields.Selection(string='Choice', selection=[
-    #                           ('metres', 'Metres'), ('litres', 'Litres'), ])
 
     # transaction_ids = fields.Many2many('payment.transaction', 'sale_order_transaction_rel', 'sale_order_id', 'transaction_id',
     #                                    string='Transactions', copy=False, readonly=True)
