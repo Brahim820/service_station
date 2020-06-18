@@ -91,10 +91,9 @@
                     </header>
                     <sheet>
                         <div class="oe_button_box" name="button_box">
-                            <button name="%(open_station_invoices)d" type="action" class="oe_stat_button" icon="fa-pencil-square-o">
+                            <button name="%(open_station_invoices)d" type="action" class="oe_stat_button" icon="fa-pencil-square-o" attrs="{'invisible': [('invoices_count', '=',0)]}">
                                 <field name="invoices_count" widget="statinfo" string="Invoices" />
                             </button>
-                            <!-- <button name="open_station_invoices" type="object" class="oe_stat_button" icon="fa-pencil-square-o"> <field name="invoices_count" widget="statinfo" string="Invoices" /> </button> -->
                         </div>
                         <group name="group_title" col="3" colspan="3">
                             <group>
@@ -119,7 +118,8 @@
                                         <field name="mclose" attrs="{'column_invisible': [('parent.sales_mode_id', '=', 'litres')]}" />
                                         <field name="eclose" attrs="{'column_invisible': [('parent.sales_mode_id', '=', 'litres')]}" />
                                         <field name="eopen" attrs="{'column_invisible': [('parent.sales_mode_id', '=', 'litres')]}" />
-                                        <field name="ltrs" />
+                                        <field name="ltrs" attrs="{'column_invisible': [('parent.sales_mode_id', '=', 'litres')]}" />
+                                        <field name="litres" attrs="{'column_invisible': [('parent.sales_mode_id', '=', 'metres')]}" />
                                         <field name="price" />
                                         <field name="amount" />
                                         <field name="nozzle_record_id" invisible="1" />

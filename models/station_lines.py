@@ -10,27 +10,32 @@ class NozzleRecordLine(models.Model):
 
     @api.depends('eclose', 'eopen')
     def _compute_ltrs(self):
-        '''Compute the litre amounts for each record line '''
+        """Compute the litre amounts for each record line """
         for line in self:
             litres = line.eclose - line.eopen
             line.update({'ltrs': litres})
 
-    @api.depends('eclose')
-    def _compute_elec(self):
-        for rec in self:
-            print(eclose)
+    # @api.depends('eclose')
+    # def _compute_elec(self):
+    #     for rec in self:
+    #         print(eclose)
 
-    @api.depends('ltrs', 'price')
+    @api.depends('ltrs', 'price', 'litres')
     def _compute_subtotal(self):
-        ''' Compute the total amounts for each line'''
+        """Compute the total amounts for each line"""
         for line in self:
-            amount = (line.ltrs * line.price)
-            line.update({'amount': amount})
+            if self.nozzle_record_id.sales_mode_id == 'metres':
+                amount = (line.ltrs * line.price)
+                line.update({'amount': amount})
+            elif self.nozzle_record_id.sales_mode_id == 'litres':
+                amount = (line.litres * line.price)
+                line.update({'amount': amount})
 
-    @api.constrains('ltrs', 'eopen', 'eclose')
+    @api.constrains('ltrs', 'eopen', 'eclose', 'litres')
     def check_litres(self):
+        """Ensure that litres sold in a day are not negative"""
         for rec in self:
-            if rec.ltrs < 0 or rec.eopen < 0 or rec.eclose < 0:
+            if rec.ltrs < 0 or rec.eopen < 0 or rec.eclose < 0 or rec.litres:
                 raise ValidationError('No negative sales are allowed !')
 
     nozzle_id = fields.Many2one(
@@ -41,6 +46,7 @@ class NozzleRecordLine(models.Model):
     eopen = fields.Float(string='Elec. Open')
     ltrs = fields.Float(string='Litres', store=True,
                         compute='_compute_ltrs', digits=(12, 3))
+    litres = fields.Float(string='Litres', store=True, digits=(12, 3))
     price = fields.Float(string='Price')
     amount = fields.Float(string='Amount', readonly=True,
                           compute='_compute_subtotal')

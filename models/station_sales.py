@@ -271,7 +271,7 @@ class StationSales(models.Model):
         string='Invoices', compute="get_invoices_count")
     invoice_ref = fields.Char(string='Ref')
     sales_mode_id = fields.Selection(string='Choice', selection=[
-        ('metres', 'Metres'), ('litres', 'Litres'), ])
+        ('metres', 'Metres'), ('litres', 'Litres')])
 
     # company_id = fields.Many2one(
     #     'res.company', 'Company', required=True, index=True, default=lambda self: self.env.company)
