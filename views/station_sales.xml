@@ -86,13 +86,12 @@
                         <button class="oe_highlight" name="approve_fuel_Sales" type="object" string="Approve" state="draft" attrs="{'invisible': [('state', '!=', 'draft')]}" />
                         <button class="oe_highlight" name="generate_sale_invoices" type="object" string="Generate Invoices" state="approved" attrs="{'invisible': [('state', '!=', 'approved')]}" groups="service_station.service_station_group_manager" />
                         <button name="reset_to_draft" type="object" string="Cancel" state="invoiced" attrs="{'invisible': [('state', '!=', 'invoiced')]}" />
-                        <button name="test" type="object" string="Test" />
+                        <!-- <button name="test" type="object" string="Test" /> -->
                         <field name="state" widget="statusbar" statusbar_visible="draft,approved,invoiced" readonly="1" />
                     </header>
                     <sheet>
                         <div class="oe_button_box" name="button_box">
-                            <!-- <button name="%(open_station_invoices)d" type="action" class="oe_stat_button" icon="fa-pencil-square-o" attrs="{'invisible': [('invoices_count', '=',0)]}"> <field name="invoices_count" widget="statinfo" string="Invoices" /> </button> -->
-                            <button name="action_view_invoice" type="object" class="oe_stat_button" icon="fa-pencil-square-o">
+                            <button name="action_view_invoice" type="object" class="oe_stat_button" icon="fa-pencil-square-o" attrs="{'invisible': [('invoices_count', '=',0)]}">
                                 <field name="invoices_count" widget="statinfo" string="Invoices" />
                             </button>
 

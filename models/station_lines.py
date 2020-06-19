@@ -27,15 +27,19 @@ class NozzleRecordLine(models.Model):
             if self.nozzle_record_id.sales_mode_id == 'metres':
                 amount = (line.ltrs * line.price)
                 line.update({'amount': amount})
+
             elif self.nozzle_record_id.sales_mode_id == 'litres':
                 amount = (line.litres * line.price)
                 line.update({'amount': amount})
 
     @api.constrains('ltrs', 'eopen', 'eclose', 'litres')
     def check_litres(self):
-        """Ensure that litres sold in a day are not negative"""
+        """Ensure that litres sold in a day are not negative for select type of form"""
         for rec in self:
-            if rec.ltrs < 0 or rec.eopen < 0 or rec.eclose < 0 or rec.litres:
+            if (self.nozzle_record_id.sales_mode_id == 'metres') and (rec.ltrs < 0 or rec.eopen < 0 or rec.eclose < 0):
+                raise ValidationError('No negative sales are allowed !')
+
+            elif self.nozzle_record_id.sales_mode_id == 'litres' and rec.litres < 0:
                 raise ValidationError('No negative sales are allowed !')
 
     nozzle_id = fields.Many2one(

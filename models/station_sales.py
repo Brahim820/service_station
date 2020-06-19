@@ -12,11 +12,13 @@ class StationSales(models.Model):
     _rec_name = 'pump'
     _order = 'id desc'
 
-    def test(self):
-        records = self.env['account.move'].search([])
-        new_records = records.filtered(lambda rec: rec.ref == self.invoice_ref)
-        for rec in self:
-            print(rec.sales_mode_id)
+    # This is a development only test function
+
+    # def test(self):
+    #     records = self.env['account.move'].search([])
+    #     new_records = records.filtered(lambda rec: rec.ref == self.invoice_ref)
+    #     for rec in self:
+    #         print(rec.sales_mode_id)
 
     @api.model
     def create(self, vals):
