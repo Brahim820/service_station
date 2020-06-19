@@ -27,7 +27,7 @@
         'data/sequence.xml',
         'views/station_menu.xml',
         # 'wizards/wizard.xml',
-        'views/invoice_smart_button.xml',
+        # 'views/invoice_smart_button.xml',
         'views/station_sales.xml',
         'views/station_misc.xml',
         'views/service_station.xml',

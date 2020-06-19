@@ -42,7 +42,6 @@ class StationSales(models.Model):
         return invoice_vals
 
     def _declare_payment_lines(self):
-
         return ['visa_line', 'loyalty_cards_line',
                 'invoices_line', 'shell_pos_line', 'mpesa_line', 'drop_line']
 
@@ -88,9 +87,32 @@ class StationSales(models.Model):
         self.write({'state': 'invoiced'})
 
     def get_invoices_count(self):
-        count = self.env['account.move'].search_count(
+        invoices = self.env['account.move'].search(
             [('ref', '=', self.invoice_ref)])
-        self.invoices_count = count
+        self.invoices_count = len(invoices)
+        self.invoice_ids = invoices
+
+    def action_view_invoice(self):
+        invoices = self.mapped('invoice_ids')
+        action = self.env.ref('account.action_move_out_invoice_type').read()[0]
+        if len(invoices) > 1:
+            action['domain'] = [('id', 'in', invoices.ids)]
+        elif len(invoices) == 1:
+            form_view = [(self.env.ref('account.view_move_form').id, 'form')]
+            if 'views' in action:
+                action['views'] = form_view + \
+                    [(state, view)
+                     for state, view in action['views'] if view != 'form']
+            else:
+                action['views'] = form_view
+            action['res_id'] = invoices.id
+        else:
+            action = {'type': 'ir.actions.act_window_close'}
+
+        context = {
+            'default_type': 'out_invoice',
+        }
+        return action
 
     def reset_to_draft(self):
         self.write({'state': 'draft'})
@@ -272,6 +294,9 @@ class StationSales(models.Model):
     invoice_ref = fields.Char(string='Ref')
     sales_mode_id = fields.Selection(string='Choice', selection=[
         ('metres', 'Metres'), ('litres', 'Litres')])
+
+    invoice_ids = fields.Many2many(
+        "account.move", string='Invoices', compute="get_invoices_count", readonly=True, copy=False)
 
     # company_id = fields.Many2one(
     #     'res.company', 'Company', required=True, index=True, default=lambda self: self.env.company)

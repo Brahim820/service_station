@@ -91,9 +91,11 @@
                     </header>
                     <sheet>
                         <div class="oe_button_box" name="button_box">
-                            <button name="%(open_station_invoices)d" type="action" class="oe_stat_button" icon="fa-pencil-square-o" attrs="{'invisible': [('invoices_count', '=',0)]}">
+                            <!-- <button name="%(open_station_invoices)d" type="action" class="oe_stat_button" icon="fa-pencil-square-o" attrs="{'invisible': [('invoices_count', '=',0)]}"> <field name="invoices_count" widget="statinfo" string="Invoices" /> </button> -->
+                            <button name="action_view_invoice" type="object" class="oe_stat_button" icon="fa-pencil-square-o">
                                 <field name="invoices_count" widget="statinfo" string="Invoices" />
                             </button>
+
                         </div>
                         <group name="group_title" col="3" colspan="3">
                             <group>
