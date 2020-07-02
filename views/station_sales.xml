@@ -94,19 +94,18 @@
                             <button name="action_view_invoice" type="object" class="oe_stat_button" icon="fa-pencil-square-o" attrs="{'invisible': [('invoices_count', '=',0)]}">
                                 <field name="invoices_count" widget="statinfo" string="Invoices" />
                             </button>
-
                         </div>
                         <group name="group_title" col="3" colspan="3">
                             <group>
-                                <field name="csa_id" />
-                                <field name="pump" />
-                                <field name="shift_id" />
-                                <field name="sales_mode_id" widget='radio' invisible="1" />
+                                <field name="csa_id" attrs="{ 'readonly':[('state','=','invoiced')] }" />
+                                <field name="pump" attrs="{ 'readonly':[('state','=','invoiced')] }" />
+                                <field name="shift_id" attrs="{ 'readonly':[('state','=','invoiced')] }" />
+                                <field name="sales_mode_id" widget='radio' invisible="1" attrs="{ 'readonly':[('state','=','invoiced')] }" />
                             </group>
                             <group></group>
                             <group>
-                                <field name="date" options="{'datepicker': {'warn_future':true}}" />
-                                <field name="station_id" />
+                                <field name="date" options="{'datepicker': {'warn_future':true}}" attrs="{ 'readonly':[('state','=','invoiced')] }" />
+                                <field name="station_id" attrs="{ 'readonly':[('state','=','invoiced')] }" />
                             </group>
                             <group></group>
                         </group>

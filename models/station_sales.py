@@ -2,7 +2,7 @@
 
 from datetime import datetime
 from odoo import models, fields, api, _
-from odoo.exceptions import ValidationError
+from odoo.exceptions import ValidationError, UserError
 
 
 class StationSales(models.Model):
@@ -27,6 +27,13 @@ class StationSales(models.Model):
                 'station.sales.sequence') or _('New')
         result = super().create(vals)
         return result
+
+    def unlink(self):
+        for rec in self:
+            if (self.state == 'invoiced') and (self.invoice_ids != []):
+                raise UserError(
+                    _('You can not delete an invoiced sale, consider archiving the record if you must remove it from the view.'))
+        return super().unlink()
 
     def _prepare_invoice(self):
         journal = self.env['account.move'].with_context(
@@ -119,8 +126,13 @@ class StationSales(models.Model):
     def reset_to_draft(self):
         self.write({'state': 'draft'})
 
-    @api.constrains('fuel_sales')
+    @ api.constrains('fuel_sales', 'date')
     def approve_fuel_Sales(self):
+        for rec in self:
+            if rec.date.strftime('%Y-%m-%d') > fields.Datetime.now().strftime('%Y-%m-%d'):
+                raise ValidationError(
+                    'You cannot approve sales for a future date')
+
         for rec in self.nozzle_record_line:
             for record in self.env['station.nozzles'].search([]):
                 record.write({'current_reading': rec.eclose}
@@ -130,7 +142,7 @@ class StationSales(models.Model):
         else:
             self.write({'state': 'approved'})
 
-    @api.depends('nozzle_record_line.amount')
+    @ api.depends('nozzle_record_line.amount')
     def _compute_fuel_sales(self):
         for record in self:
             fuel_sales = 0
@@ -139,16 +151,16 @@ class StationSales(models.Model):
             record.update({'fuel_sales': fuel_sales})
         return fuel_sales
 
-    @api.depends('amount_tax', 'amount_untaxed')
+    @ api.depends('amount_tax', 'amount_untaxed')
     def _compute_taxes(self):
         for rec in self:
             amount = rec.amount_untaxed + \
                 (rec.amount_tax/100 * rec.amount_untaxed)
             rec.update({'amount_total': amount})
 
-    @api.depends('amount_untaxed', 'amount_tax', 'visa_line.amount', 'shell_pos_line.amount',
-                 'loyalty_cards_line.amount', 'mpesa_line.amount', 'drop_line.amount',
-                 'invoices_line.amount')
+    @ api.depends('amount_untaxed', 'amount_tax', 'visa_line.amount', 'shell_pos_line.amount',
+                  'loyalty_cards_line.amount', 'mpesa_line.amount', 'drop_line.amount',
+                  'invoices_line.amount')
     def _compute_total_amount(self):
         # payment_lines = self._declare_payment_lines()
         # payment_totals = ['visa_total', 'shell_pos_total', 'mpesa_total','loyalty_cards_total','invoices_total','drop_total']
@@ -208,7 +220,7 @@ class StationSales(models.Model):
                 'short_or_excess_display': short_or_excess_display,
             })
 
-    @api.onchange('pump')
+    @ api.onchange('pump')
     def _onchange_pump_create_nozzles(self):
         for rec in self:
             lines = [(5, 0, 0)]
@@ -221,13 +233,13 @@ class StationSales(models.Model):
                 lines.append((0, 0, val))
             rec.nozzle_record_line = lines
 
-    @api.onchange('csa_id')
+    @ api.onchange('csa_id')
     def _onchange_csa_id_filter_pump(self):
         for rec in self:
             return {'domain':
                     {'pump': [('station_id', '=', rec.csa_id.station_id.id)]}}
 
-    @api.onchange('csa_id')
+    @ api.onchange('csa_id')
     def _onchange_csa_id_update_dropby(self):
         for rec in self:
             # THIS WILL CLEAR LINES INCASE CSA CHANGES, OTHERWISE IT WILL ADD NEW CSA TO NEXT LINE
