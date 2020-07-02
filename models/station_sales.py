@@ -104,6 +104,8 @@ class StationSales(models.Model):
             self.write({'state': 'invoiced'})
 
     def link_short_or_excess_to_csa(self):
+        '''Shorts or excess should be pushed to the csa's account for accountability or rewarding scheme'''
+
         for rec in self.env['station.csa'].search([]):
             lines = []
             vals = {
@@ -256,7 +258,7 @@ class StationSales(models.Model):
     def _onchange_csa_id_filter_pump(self):
         for rec in self:
             return {'domain':
-                    {'pump': [('station_id', '=', rec.csa_id.station_id.id)]}}
+                    {'pump': ['&', ('station_id', '=', rec.csa_id.station_id.id), ('is_active', '=', True)]}}
 
     @ api.onchange('csa_id')
     def _onchange_csa_id_update_dropby(self):

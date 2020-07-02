@@ -20,12 +20,12 @@ class StationPump(models.Model):
     _description = 'Create And Manage a pump'
     _rec_name = 'name'
 
-    @api.depends('active')
+    @api.depends('is_active')
     def set_status(self):
         for rec in self:
-            if rec.active is True:
+            if rec.is_active is True:
                 rec.status = 'active'
-            elif rec.active is False:
+            elif rec.is_active is False:
                 rec.status = 'down'
 
     name = fields.Char(string='Pump Label', required=True)
@@ -34,7 +34,7 @@ class StationPump(models.Model):
     station_id = fields.Many2one('station.stations', string='Station Id')
     nozzle_line = fields.One2many(
         'station.nozzles', 'pump_id', string='Nozzle Line')
-    active = fields.Boolean(string='Active', required=True, default=True)
+    is_active = fields.Boolean(string='Is Active', required=True, default=True)
 
 
 class StationNozzles(models.Model):

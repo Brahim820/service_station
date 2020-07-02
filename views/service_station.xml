@@ -7,7 +7,6 @@
             <field name="model">station.stations</field>
             <field name="arch" type="xml">
                 <tree>
-                    <!-- Add your fields here -->
                     <field name="name" />
                     <field name="manager" />
                 </tree>
@@ -37,7 +36,7 @@
 
                                     <tree string="Pump Caption">
                                         <field name="name" />
-                                        <field name="active" />
+                                        <field name="is_active" />
                                         <field name="status" />
                                         <field name="station_id" invisible='1' />
                                     </tree>
@@ -122,7 +121,7 @@
                                 <field name="name" />
                             </group>
                             <group>
-                                <field name="active" />
+                                <field name="is_active" />
                                 <field name="status" />
                             </group>
                         </group>

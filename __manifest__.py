@@ -9,7 +9,7 @@
         This module should manage ...
     """,
 
-    'author': "Kylix Technologies",
+    'author': "Eric@kylixTechnologies",
     'website': "http://www.kylix.online",
 
     'category': 'Sales',
