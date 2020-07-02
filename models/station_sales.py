@@ -100,7 +100,19 @@ class StationSales(models.Model):
             for record in new_invoice_vals:
                 self.env['account.move'].sudo().create(dict(record))
 
+            self.link_short_or_excess_to_csa()
             self.write({'state': 'invoiced'})
+
+    def link_short_or_excess_to_csa(self):
+        for rec in self.env['station.csa'].search([]):
+            lines = []
+            vals = {
+                'date': self.date,
+                'description': 'short' if self.short_or_excess < 0 else 'excess',
+                'amount': self.short_or_excess,
+            }
+            lines.append((0, 0, vals))
+            rec.short_line = lines if self.csa_id.id == rec.id else None
 
     def get_invoices_count(self):
         invoices = self.env['account.move'].search(
