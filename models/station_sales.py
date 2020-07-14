@@ -15,10 +15,22 @@ class StationSales(models.Model):
     # This is a development only test function
 
     # def test(self):
-    #     records = self.env['account.move'].search([])
-    #     new_records = records.filtered(lambda rec: rec.ref == self.invoice_ref)
-    #     for rec in self:
-    #         print(rec.sales_mode_id)
+
+    #     for line in self.nozzle_record_line:
+    #         product = self.env['product.product'].search(
+    #             [('id', '=', line.nozzle_id.inherited_id)])
+
+    #         product_stock = self.env['stock.quant'].search(
+    #             [('product_id', '=', product.id)])[0]
+
+    #         if self.sales_mode_id == 'metres':
+    #             product_stock.sudo().update({
+    #                 'quantity': product_stock.quantity - line.ltrs
+    #             })
+    #         else:
+    #             product_stock.sudo().update({
+    #                 'quantity': product_stock.quantity - line.litres
+    #             })
 
     @api.model
     def create(self, vals):
@@ -101,6 +113,8 @@ class StationSales(models.Model):
                 self.env['account.move'].sudo().create(dict(record))
 
             self.link_short_or_excess_to_csa()
+            self.adjust_inventory()
+
             self.write({'state': 'invoiced'})
 
     def link_short_or_excess_to_csa(self):
@@ -158,6 +172,7 @@ class StationSales(models.Model):
             for record in self.env['station.nozzles'].search([]):
                 record.write({'current_reading': rec.eclose}
                              ) if record.id == rec.nozzle_id.id else None
+
         if (self.fuel_sales == 0):
             raise ValidationError('You cannot approve zero sales!')
         else:
@@ -172,12 +187,40 @@ class StationSales(models.Model):
             record.update({'fuel_sales': fuel_sales})
         return fuel_sales
 
-    @ api.depends('amount_tax', 'amount_untaxed')
-    def _compute_taxes(self):
-        for rec in self:
-            amount = rec.amount_untaxed + \
-                (rec.amount_tax/100 * rec.amount_untaxed)
-            rec.update({'amount_total': amount})
+    @api.model
+    def adjust_inventory(self):
+        for line in self.nozzle_record_line:
+            product = self.env['product.product'].search(
+                [('id', '=', line.nozzle_id.inherited_id)])
+
+            product_stock = self.env['stock.quant'].search(
+                [('product_id', '=', product.id)])[0]
+
+            if self.sales_mode_id == 'metres':
+                product_stock.sudo().update({
+                    'quantity': product_stock.quantity - line.ltrs
+                })
+            else:
+                product_stock.sudo().update({
+                    'quantity': product_stock.quantity - line.litres
+                })
+
+    def do_taxes(self):
+        total_tax = 0
+        for line in self.nozzle_record_line:
+            product = self.env['product.product'].search(
+                [('id', '=', line.nozzle_id.inherited_id)])
+
+            tax_ids = product.mapped(('taxes_id')).id
+
+            tax_percentage = self.env['account.tax'].search(
+                [('id', '=', tax_ids)]).mapped('amount')[0]
+
+            taxable_amount = product.mapped('taxable_amount')[0]
+
+            total_tax += (tax_percentage/100) * (taxable_amount * line.amount)
+
+        return total_tax
 
     @ api.depends('amount_untaxed', 'amount_tax', 'visa_line.amount', 'shell_pos_line.amount',
                   'loyalty_cards_line.amount', 'mpesa_line.amount', 'drop_line.amount',
@@ -221,9 +264,12 @@ class StationSales(models.Model):
 
             total_credits = visa_total + invoices_total + \
                 mpesa_total + shell_pos_total + loyalty_cards_total
+
             cash_required = fuel_sales - total_credits
             short_or_excess = drop_total - cash_required
+
             amount_untaxed = total_credits + drop_total
+            amount_tax = self.do_taxes()
 
             short_or_excess_display = '{:+}'.format(short_or_excess)
 
@@ -235,6 +281,8 @@ class StationSales(models.Model):
                 'invoices_total': invoices_total,
                 'drop_total': drop_total,
                 'amount_untaxed': amount_untaxed,
+                'amount_tax': amount_tax,
+                'amount_total': amount_untaxed + amount_tax,
                 'total_credits': total_credits,
                 'cash_required': cash_required,
                 'short_or_excess': short_or_excess,
@@ -281,10 +329,10 @@ class StationSales(models.Model):
     date = fields.Date(
         string='Date', default=fields.Datetime.now, required=True)
     amount_untaxed = fields.Monetary(string='Untaxed Amount', readonly=True)
-    amount_tax = fields.Monetary(string='Tax Amount')
+    amount_tax = fields.Monetary(string='Tax Amount', readonly=True)
     currency_id = fields.Many2one('res.currency')
     amount_total = fields.Monetary(
-        string='Total Amount', compute='_compute_taxes', readonly=True)
+        string='Total Amount', readonly=True)
     fuel_sales = fields.Monetary(string='Fuel Sales', track_visibility='onchange',
                                  compute='_compute_fuel_sales')
     total_credits = fields.Monetary(string='Total Credits', readonly=True)
@@ -332,25 +380,3 @@ class StationSales(models.Model):
 
     invoice_ids = fields.Many2many(
         "account.move", string='Invoices', compute="get_invoices_count", readonly=True, copy=False)
-
-    # company_id = fields.Many2one(
-    #     'res.company', 'Company', required=True, index=True, default=lambda self: self.env.company)
-    # payment_term_id = fields.Many2one('account.payment.term', string='Payment Terms', check_company=True,
-    #                                   domain="['|', ('company_id', '=', False), ('company_id', '=', company_id)]",)
-    # pricelist_id = fields.Many2one('product.pricelist', string='Pricelist', check_company=True,
-    #                                readonly=True, domain="['|', ('company_id', '=', False), ('company_id', '=', company_id)]",)
-    # currency_id = fields.Many2one(
-    #     "res.currency", related='pricelist_id.currency_id', string="Currency", readonly=True, required=True)
-    # analytic_account_id = fields.Many2one('account.analytic.account', 'Analytic Account', readonly=True, copy=False,
-    #                                       check_company=True, domain="['|', ('company_id', '=', False), ('company_id', '=', company_id)]")
-
-    # transaction_ids = fields.Many2many('payment.transaction', 'sale_order_transaction_rel', 'sale_order_id', 'transaction_id',
-    #                                    string='Transactions', copy=False, readonly=True)
-    # authorized_transaction_ids = fields.Many2many('payment.transaction', compute='_compute_authorized_transaction_ids',
-    #                                               string='Authorized Transactions', copy=False, readonly=True)
-
-    # @api.depends('transaction_ids')
-    # def _compute_authorized_transaction_ids(self):
-    #     for trans in self:
-    #         trans.authorized_transaction_ids = trans.transaction_ids.filtered(
-    #             lambda t: t.state == 'authorized')

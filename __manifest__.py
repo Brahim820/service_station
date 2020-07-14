@@ -9,7 +9,7 @@
         This module should manage ...
     """,
 
-    'author': "Eric@kylixTechnologies",
+    'author': "Eric@kylixs",
     'website': "http://www.kylix.online",
 
     'category': 'Sales',
@@ -24,19 +24,21 @@
     'data': [
         'security/security.xml',
         'security/ir.model.access.csv',
+
         'data/sequence.xml',
+
         'views/station_menu.xml',
-        # 'wizards/wizard.xml',
-        # 'views/invoice_smart_button.xml',
+        'wizards/wizard.xml',
+
         'views/station_sales.xml',
         'views/station_misc.xml',
         'views/service_station.xml',
+        'views/mpesa_records.xml',
+
         'reports/station_sale_report.xml',
         'reports/report.xml',
+
         # 'views/station_settings.xml',
     ],
-    # only loaded in demonstration mode
-    'demo': [
-        'demo/demo.xml',
-    ],
+
 }

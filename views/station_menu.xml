@@ -55,29 +55,37 @@
             </field>
         </record>
 
+        <record id="action_station_mpesa_records" model="ir.actions.act_window">
+            <field name="type">ir.actions.act_window</field>
+            <field name="name">Mpesa Records</field>
+            <field name="res_model">station.mpesa.records</field>
+            <field name="view_mode">tree,form</field>
+            <field name="target">current</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                Mpesa Records
+                </p>
+            </field>
+        </record>
+
         <!-- station.settings action window -->
-        <!-- <record id="station_settings_action" model="ir.actions.act_window">
-            <field name="name">Station Settings</field>
-            <field name="res_model">res.config.settings</field>
-            <field name="view_id" ref="res_config_station_settings_form"/>
-            <field name="domain">[]</field>
-            <field name="context">{'module': 'service_station'}</field>
-            <field name="target">inline</field>
-        </record> -->
+        <!-- <record id="station_settings_action" model="ir.actions.act_window"> <field name="name">Station Settings</field> <field name="res_model">res.config.settings</field> <field name="view_id" ref="res_config_station_settings_form"/> <field name="domain">[]</field> <field name="context">{'module': 'service_station'}</field> <field name="target">inline</field> </record> -->
 
         <!-- This is the root menu -->
-        <menuitem id="service_station_root" name="Service Station" sequence="10" web_icon="service_station,static/description/icon.png"/>
+        <menuitem id="service_station_root" name="Service Station" sequence="10" web_icon="service_station,static/description/icon.png" />
 
         <!-- These are the submenus -->
-        <menuitem id="service_station_menu" name="Station Sales" parent="service_station_root" action="service_station_action" sequence="1"/>
+        <menuitem id="service_station_menu" name="Station Sales" parent="service_station_root" action="service_station_action" sequence="1" />
 
-        <menuitem id="service_station_miscelleneous" name="Miscelleneous" parent="service_station_root" action="station_miscelleneous_action" sequence="2"/>
+        <menuitem id="service_station_miscelleneous" name="Miscelleneous" parent="service_station_root" action="station_miscelleneous_action" sequence="2" />
 
-        <menuitem id="station_pump_menu" name="Stations" action="station_pump_action" parent="service_station_root" sequence="3"/>
+        <menuitem id="station_pump_menu" name="Stations" action="station_pump_action" parent="service_station_root" sequence="3" />
 
-        <menuitem id="station_csa_menu" name="CSA" action="station_csa_action" parent="service_station_root" sequence="4"/>
+        <menuitem id="station_csa_menu" name="CSA" action="station_csa_action" parent="service_station_root" sequence="4" />
 
-        <menuitem id="station_configuration_menu" name="Configurations" parent="service_station_root" sequence="100"/>
+        <menuitem id="station_configuration_menu" name="Configurations" parent="service_station_root" sequence="100" />
+
+        <menuitem id="station_mpesa_records_menu" name="Mpesa Records" action="action_station_mpesa_records" parent="station_configuration_menu" sequence="6" />
 
         <!-- <menuitem id="station_settings_menu" name="Settings" action="station_settings_action" parent="station_configuration_menu" sequence="6"/> -->
     </data>

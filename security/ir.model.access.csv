@@ -45,3 +45,6 @@ access_station_nozzle_misc,Nozzle Access Miscelleneous,model_nozzle_misc,service
 
 access_station_csa_short_line,Csa Short Line,model_csa_short_line,,1,1,1,1
 access_station_csa_history_line,Csa History Line,model_csa_history_line,,1,1,1,1
+
+access_station_mpesa_records,Station Mpesa Records,model_station_mpesa_records,,1,1,1,1
+access_mpesa_records_wizard,Mpesa Records Wizard,model_mpesa_records_wizard,,1,1,1,1

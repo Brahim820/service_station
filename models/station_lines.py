@@ -101,6 +101,8 @@ class MpesaLine(models.Model):
 
     code = fields.Char(string='Code', required=True)
     amount = fields.Monetary('Amount', 'currency_id')
+    message = fields.Text(string='Message')
+    message_id = fields.Char(string='Message_ID')
     partner_id = fields.Many2one(comodel_name='res.partner', string='Customer')
     currency_id = fields.Many2one('res.currency')
     mpesa_id = fields.Many2one(
