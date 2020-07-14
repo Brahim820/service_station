@@ -14,23 +14,44 @@ class Miscelleneous(models.Model):
     shift_id = fields.Selection([
         ('morning', 'Morning'),
         ('night', 'Night')
-    ], string='Shift', required=True)
+    ], string='Shift')
     state = fields.Selection([
         ('draft', 'Draft'),
         ('locked', 'Locked')
-    ], string='State', required=True)
-    station_id = fields.Many2one(
-        'station.stations', string='Station', required=True)
+    ], string='Status', readonly=True, index=True, copy=False, default='draft', track_visibility='onchange')
+
     pump_id = fields.Many2one('station.pump', string='Pump', required=True)
+    station_id = fields.Many2one(
+        string='Station', related='pump_id.station_id')
+
     total_litres = fields.Float(compute='_compute_total_litres')
+    master_dip = fields.Float(string='Master Dip')
     nozzle_misc_line = fields.One2many(
         'nozzle.misc', 'nozzle_misc_id', string='Nozzle Misc Line')
 
     def reset_to_draft(self):
+        self.adjust_current_readings()
         self.write({'state': 'draft'})
 
-    def approve_dips(self):
+    def approve_button(self):
+        self.adjust_current_readings()
         self.write({'state': 'locked'})
+
+    def adjust_current_readings(self):
+        current_reading = 0
+
+        for rec in self.nozzle_misc_line:
+            nozzle_id = self.env['station.nozzles'].search(
+                [('id', '=', rec.nozzle_id.id)])
+
+            if self.state == 'draft':
+                current_reading = nozzle_id.mapped(
+                    'current_reading')[0] + rec.litres
+            else:
+                current_reading = nozzle_id.mapped(
+                    'current_reading')[0] - rec.litres
+
+            nozzle_id.update({'current_reading': current_reading})
 
     @api.model
     def create(self, vals):
@@ -43,7 +64,7 @@ class Miscelleneous(models.Model):
     @api.depends('nozzle_misc_line.litres')
     def _compute_total_litres(self):
         for record in self:
-            total_litres = 0.0
+            total_litres = 0
             for line in record.nozzle_misc_line:
                 total_litres += line.litres
             record.update({'total_litres': total_litres})
@@ -60,8 +81,8 @@ class MiscNozzleLine(models.Model):
     _name = 'nozzle.misc'
     _description = 'Create Nozzle Lines'
 
-    nozzle_id = fields.Many2one('product.product', string='Nozzle', domain=[
-                                ('wet_product', '=', True)], required=True)
+    nozzle_id = fields.Many2one(
+        'station.nozzles', string='Nozzle', required=True)
     eopen = fields.Float(string='Electric Open')
     eclose = fields.Float(string='Electric Close')
     litres = fields.Float(string='Litres', readonly=True,
@@ -76,8 +97,9 @@ class MiscNozzleLine(models.Model):
             litres = line.eclose - line.eopen
             line.update({'litres': litres})
 
-    # @api.constrains('litres', 'eopen', 'eclose')
-    # def check_litres(self):
-    #     for rec in self:
-    #         if rec.litres < 0 or rec.eopen < 0 or rec.eclose < 0:
-    #             raise ValidationError('No negative sales are allowed !')
+    @api.constrains('litres', 'eopen', 'eclose')
+    def check_litres(self):
+        for rec in self:
+            if rec.litres < 0 or rec.eopen < 0 or rec.eclose < 0:
+                raise ValidationError(
+                    'Please check that the litres are not negative!')
