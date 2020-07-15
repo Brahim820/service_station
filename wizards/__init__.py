@@ -1,1 +1,1 @@
-from . import master_dips
+from . import wizard

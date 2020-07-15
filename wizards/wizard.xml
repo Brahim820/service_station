@@ -1,32 +1,33 @@
-<?xml version="1.0"?>
+<?xml version='1.0' encoding='utf-8'?>
 <odoo>
-    <record id="create_master_dips_form" model="ir.ui.view">
-        <field name="name">Station Dips Form</field>
-        <field name="model">master.dips</field>
-        <field name="arch" type="xml">
-            <form string="Master Dips">
-                <group class="oe_title">
-                    <field name="master_dip" />
-                    <field name="date" />
-                </group>
-                <group class="oe_title">
-                    <field name="pump_skips" />
-                    <field name="empty_run" />
-                </group>
-                <footer>
-                    <button name="action_create_invoice" string="Create Invoice" type="object" class="btn-primary" />
-                    <button string="Cancel" class="btn-secondary" special="cancel" />
-                </footer>
-            </form>
-        </field>
-    </record>
+    <data noupdate="0">
+        <record id="action_mpesa_records_form" model="ir.ui.view">
+            <field name="name">Mpesa Records Wizard Form</field>
+            <field name="model">mpesa.records.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Get Mpesa Records">
+                    <group>
+                        <span colspan="4" nolabel="1">Use this wizard to retrieve Mpesa Messages, and populate them down at the mpesa lines.</span>
+                    </group>
 
-    <record id="create_master_dips" model="ir.actions.act_window">
-        <field name="name">Master Dips</field>
-        <field name="type">ir.actions.act_window</field>
-        <field name="res_model">master.dips</field>
-        <field name="view_mode">form</field>
-        <field name="view_id" ref="create_master_dips_form" />
-        <field name="target">new</field>
-    </record>
+                    <group colspan="4">
+                        <field name="date" />
+                    </group>
+                    <footer>
+                        <button name="action_add_mpesa_records" string="Add Records" type="object" class="btn-primary" />
+                        <button string="Cancel" class="btn-secondary" special="cancel" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_mpesa_records" model="ir.actions.act_window">
+            <field name="name">Refund Deposits</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">mpesa.records.wizard</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="action_mpesa_records_form" />
+            <field name="target">new</field>
+        </record>
+    </data>
 </odoo>

@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <data noupdate="0">
+        <!-- station.mpesa.records tree view -->
+        <record id="station_mpesa_view_tree" model="ir.ui.view">
+            <field name="name">station.mpesa.records.view.tree</field>
+            <field name="model">station.mpesa.records</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="sender_from" />
+                    <field name="amount" />
+                    <field name="date" />
+                </tree>
+            </field>
+        </record>
+
+        <!-- station.mpesa.records search view -->
+        <record id="station_mpesa_view_search" model="ir.ui.view">
+            <field name="name">station.mpesa.records.view.search</field>
+            <field name="model">station.mpesa.records</field>
+            <field name="arch" type="xml">
+                <search string="Search Description">
+                    <field name="sender_from" />
+                    <group expand="1" string="Group By">
+                        <filter string="Order Date" name="date" context="{'group_by':'date'}" />
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <!-- station.mpesa.records form view -->
+        <record id="station_mpesa_view_form" model="ir.ui.view">
+            <field name="name">station.mpesa.records.view.form</field>
+            <field name="model">station.mpesa.records</field>
+            <field name="arch" type="xml">
+                <form string="Mpesa Records">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="sender_from" />
+                                <field name="amount" />
+                                <field name="date" />
+                            </group>
+                            <group>
+                                <field name="message" />
+                                <field name="message_id" />
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+    </data>
+</odoo>

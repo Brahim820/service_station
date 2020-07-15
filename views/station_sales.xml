@@ -83,6 +83,7 @@
                 <form string="station sales">
                     <header>
                         <button name="reset_to_draft" type="object" string="Reset To Draft" state="approved" attrs="{'invisible': [('state', '!=', 'approved')]}" />
+                        <button name="%(action_mpesa_records)d" type="action" string="Mpesa Records" attrs="{'invisible': [('state', '=', 'invoiced')]}" />
                         <button class="oe_highlight" name="approve_fuel_Sales" type="object" string="Approve" state="draft" attrs="{'invisible': [('state', '!=', 'draft')]}" />
                         <button class="oe_highlight" name="generate_sale_invoices" type="object" string="Generate Invoices" state="approved" attrs="{'invisible': [('state', '!=', 'approved')]}" groups="service_station.service_station_group_manager" />
                         <button name="reset_to_draft" type="object" string="Cancel" state="invoiced" attrs="{'invisible': [('state', '!=', 'invoiced')]}" />
@@ -180,7 +181,9 @@
                                     <tree create="true" delete="true" edit="true" editable="bottom">
                                         <field name="code" />
                                         <field name="partner_id" />
+                                        <field name="message" />
                                         <field name="amount" />
+                                        <field name="message_id" invisible="1" />
                                         <field name="mpesa_id" invisible="1" />
                                     </tree>
                                 </field>
