@@ -10,12 +10,12 @@
             <field name="help" type="html">
                 <p class="o_view_nocontent_smiling_face">
                 Track your service station sales progress.
-                </p>
+</p>
             </field>
         </record>
 
         <!-- station.stations action window -->
-        <record id="station_pump_action" model="ir.actions.act_window">
+        <record id="station_station_action" model="ir.actions.act_window">
             <field name="name">Stations</field>
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">station.stations</field>
@@ -23,8 +23,20 @@
             <field name="help" type="html">
                 <p class="oe_view_nocontent_create">
                 Create Stations
-                </p>
+</p>
+            </field>
+        </record>
 
+        <!-- station.pumps action window -->
+        <record id="station_pump_action" model="ir.actions.act_window">
+            <field name="name">Pumps</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">station.pump</field>
+            <field name="view_mode">kanban,tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                Create Pumps
+</p>
             </field>
         </record>
 
@@ -37,7 +49,7 @@
             <field name="help" type="html">
                 <p class="oe_view_nocontent_create">
                 Create a new Contipartner Sales Agent!
-                </p>
+</p>
             </field>
         </record>
 
@@ -51,7 +63,7 @@
             <field name="help" type="html">
                 <p class="oe_view_nocontent_create">
                 Record Dry Pump Runs.
-                </p>
+</p>
             </field>
         </record>
 
@@ -64,7 +76,20 @@
             <field name="help" type="html">
                 <p class="oe_view_nocontent_create">
                 Mpesa Records
-                </p>
+</p>
+            </field>
+        </record>
+
+        <record id="station_short_or_excess_action" model="ir.actions.act_window">
+            <field name="type">ir.actions.act_window</field>
+            <field name="name">Shorts And Excesses</field>
+            <field name="res_model">csa.short.line</field>
+            <field name="view_mode">tree,form</field>
+            <field name="target">current</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                Create a short or an excess to a CSA's name.
+</p>
             </field>
         </record>
 
@@ -79,13 +104,15 @@
 
         <menuitem id="service_station_miscelleneous" name="Miscelleneous" parent="service_station_root" action="station_miscelleneous_action" sequence="2" />
 
-        <menuitem id="station_pump_menu" name="Stations" action="station_pump_action" parent="service_station_root" sequence="3" />
+        <menuitem id="station_station_menu" name="Stations" action="station_station_action" parent="service_station_root" sequence="3" />
 
         <menuitem id="station_csa_menu" name="CSA" action="station_csa_action" parent="service_station_root" sequence="4" />
 
-        <menuitem id="station_configuration_menu" name="Configurations" parent="service_station_root" sequence="100" />
+        <menuitem id="station_configuration_menu" name="Extras" parent="service_station_root" sequence="100" />
 
+        <menuitem id="station_pump_menu" name="Pumps" action="station_pump_action" parent="station_configuration_menu" sequence="1" />
         <menuitem id="station_mpesa_records_menu" name="Mpesa Records" action="action_station_mpesa_records" parent="station_configuration_menu" sequence="6" />
+        <menuitem id="station_short_or_excess_menu" name="Shorts &amp; Excesses" action="station_short_or_excess_action" parent="station_configuration_menu" sequence="7" />
 
         <!-- <menuitem id="station_settings_menu" name="Settings" action="station_settings_action" parent="station_configuration_menu" sequence="6"/> -->
     </data>
