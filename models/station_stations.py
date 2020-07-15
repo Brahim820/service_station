@@ -3,7 +3,7 @@ from odoo import models, fields, api
 
 class ServiceStation(models.Model):
     _name = 'station.stations'
-    _inherit = ['mail.thread', 'mail.activity.mixin']
+    _inherit = ['mail.activity.mixin']
     _description = 'Add a station, configure their pumps and nozzles.'
     _rec_name = 'name'
 
@@ -17,6 +17,7 @@ class ServiceStation(models.Model):
 
 class StationPump(models.Model):
     _name = 'station.pump'
+    _inherit = ['mail.activity.mixin']
     _description = 'Create And Manage a pump'
     _rec_name = 'name'
 
@@ -93,6 +94,7 @@ class StationCsa(models.Model):
 class CSAShorts(models.Model):
     _name = 'csa.short.line'
     _description = 'Record CSA shorts and excesses'
+    _rec_name = 'csa_id'
 
     date = fields.Date(string='Date')
     description = fields.Selection([
