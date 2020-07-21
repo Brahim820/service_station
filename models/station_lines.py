@@ -108,6 +108,17 @@ class MpesaLine(models.Model):
     mpesa_id = fields.Many2one(
         comodel_name='station.sales', string='Mpesa Id')
 
+    @api.model
+    def unlink(self):
+        # When a record is deleted from the mpesa lines. It is marked as open to be assigned again.
+        for rec in self:
+            message = self.env['station.mpesa.records'].search(
+                [('message_id', '=', rec.message_id)])
+            message.update({
+                'assigned': False
+            })
+        return super().unlink()
+
 
 class InvoicesLine(models.Model):
     _name = 'invoices.line'
