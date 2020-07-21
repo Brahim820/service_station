@@ -42,6 +42,11 @@ class NozzleRecordLine(models.Model):
             elif self.nozzle_record_id.sales_mode_id == 'litres' and rec.litres < 0:
                 raise ValidationError('No negative sales are allowed !')
 
+    @api.onchange('mclose')
+    def onchange_mclose(self):
+        for rec in self:
+            rec.update({'eclose': rec.mclose})
+
     nozzle_id = fields.Many2one(
         string='Nozzle', comodel_name='station.nozzles', required=True,
         domain=[('wet_product', '=', True)])
