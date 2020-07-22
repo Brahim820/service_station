@@ -141,5 +141,5 @@ class DropLine(models.Model):
     currency_id = fields.Many2one('res.currency')
     drop_by = fields.Many2one(
         'station.csa', string='Dropped By')
-
+    partner_id = fields.Many2one('res.partner', string='Customer')
     drop_id = fields.Many2one(comodel_name='station.sales', string='Drop Id')
