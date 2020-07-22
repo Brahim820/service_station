@@ -15,11 +15,6 @@ class NozzleRecordLine(models.Model):
             litres = line.eclose - line.eopen
             line.update({'ltrs': litres})
 
-    # @api.depends('eclose')
-    # def _compute_elec(self):
-    #     for rec in self:
-    #         print(eclose)
-
     @api.depends('ltrs', 'price', 'litres')
     def _compute_subtotal(self):
         """Compute the total amounts for each line"""
