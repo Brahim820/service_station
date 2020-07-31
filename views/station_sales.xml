@@ -6,7 +6,7 @@
             <field name="name">station.sales.view.tree</field>
             <field name="model">station.sales</field>
             <field name="arch" type="xml">
-                <tree>
+                <tree decoration-info="state=='draft'">
                     <field name="csa_id" />
                     <field name="shift_id" />
                     <field name="pump" />
@@ -210,6 +210,7 @@
                                         <field name="code" />
                                         <field name="drop_by" />
                                         <field name="amount" />
+                                        <field name="partner_id" invisible="1" />
                                         <field name="drop_id" invisible="1" />
                                     </tree>
                                 </field>

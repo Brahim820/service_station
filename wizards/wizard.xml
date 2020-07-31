@@ -7,11 +7,26 @@
             <field name="arch" type="xml">
                 <form string="Get Mpesa Records">
                     <group>
-                        <span colspan="4" nolabel="1">Use this wizard to retrieve Mpesa Messages, and populate them down at the mpesa lines.</span>
+                        <span colspan="4" nolabel="1">
+                            Select Mpesa Messages, and populate them down at the mpesa lines.
+                            <br />
+                            Messages are already filtered by date.
+                        </span>
+                    </group>
+                    <group>
+                        <field name="date" />
                     </group>
 
                     <group colspan="4">
-                        <field name="date" />
+                        <field name="mpesa_messages" domain="[('date', '=', date)]" nolabel="1">
+                            <tree>
+                                <field name="code" />
+                                <field name="sender_from" />
+                                <field name="amount" />
+                                <field name="assigned" />
+                                <field name="date" />
+                            </tree>
+                        </field>
                     </group>
                     <footer>
                         <button name="action_add_mpesa_records" string="Add Records" type="object" class="btn-primary" />

@@ -15,11 +15,6 @@ class NozzleRecordLine(models.Model):
             litres = line.eclose - line.eopen
             line.update({'ltrs': litres})
 
-    # @api.depends('eclose')
-    # def _compute_elec(self):
-    #     for rec in self:
-    #         print(eclose)
-
     @api.depends('ltrs', 'price', 'litres')
     def _compute_subtotal(self):
         """Compute the total amounts for each line"""
@@ -41,6 +36,11 @@ class NozzleRecordLine(models.Model):
 
             elif self.nozzle_record_id.sales_mode_id == 'litres' and rec.litres < 0:
                 raise ValidationError('No negative sales are allowed !')
+
+    @api.onchange('mclose')
+    def onchange_mclose(self):
+        for rec in self:
+            rec.update({'eclose': rec.mclose})
 
     nozzle_id = fields.Many2one(
         string='Nozzle', comodel_name='station.nozzles', required=True,
@@ -108,6 +108,17 @@ class MpesaLine(models.Model):
     mpesa_id = fields.Many2one(
         comodel_name='station.sales', string='Mpesa Id')
 
+    @api.model
+    def unlink(self):
+        # When a record is deleted from the mpesa lines. It is marked as open to be assigned again.
+        for rec in self:
+            message = self.env['station.mpesa.records'].search(
+                [('message_id', '=', rec.message_id)])
+            message.update({
+                'assigned': False
+            })
+        return super().unlink()
+
 
 class InvoicesLine(models.Model):
     _name = 'invoices.line'
@@ -130,5 +141,5 @@ class DropLine(models.Model):
     currency_id = fields.Many2one('res.currency')
     drop_by = fields.Many2one(
         'station.csa', string='Dropped By')
-
+    partner_id = fields.Many2one('res.partner', string='Customer')
     drop_id = fields.Many2one(comodel_name='station.sales', string='Drop Id')

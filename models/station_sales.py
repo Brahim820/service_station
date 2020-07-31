@@ -15,6 +15,8 @@ class StationSales(models.Model):
     # This is a development only test function
 
     # def test(self):
+    #     company_id = self.env.user.company_id
+    #     print(company_id.partner_id.name)
 
     #     for line in self.nozzle_record_line:
     #         product = self.env['product.product'].search(
@@ -69,37 +71,22 @@ class StationSales(models.Model):
     def prepare_invoice_lines(self):
         invoice_val_dicts = []
         payment_lines = self._declare_payment_lines()
+        company_partner_id = self.env.user.company_id.partner_id
 
         for record in payment_lines:
-            if record == 'drop_line':
-                company_partner_id = self.env['res.partner'].search(
-                    [('me_id', '=', True)])
-                for rec in self[record]:
-                    if rec.amount > 0:
-                        invoice_val_list = self._prepare_invoice()
-                        invoice_val_list['partner_id'] = company_partner_id.id
-                        invoice_val_list['invoice_partner_bank_id'] = company_partner_id.bank_ids[:1].id,
-                        invoice_val_list['invoice_line_ids'] = [0, 0, {
-                            'name': rec.code,
-                            'account_id': 1,
-                            'quantity': 1,
-                            'price_unit': rec.amount,
-                        }]
-                        invoice_val_dicts.append(invoice_val_list)
-            else:
-                for rec in self[record]:
-                    if rec.amount > 0:
-                        invoice_val_list = self._prepare_invoice()
-                        invoice_val_list['partner_id'] = rec.partner_id.id
-                        invoice_val_list['invoice_partner_bank_id'] = rec.partner_id.bank_ids[:1].id,
-                        invoice_val_list['invoice_line_ids'] = [0, 0, {
-                            'name': rec.code,
-                            'account_id': 1,
-                            'quantity': 1,
-                            'price_unit': rec.amount,
-                        }]
-                        invoice_val_dicts.append(invoice_val_list)
-
+            for rec in self[record]:
+                if rec.amount > 0:
+                    invoice_val_list = self._prepare_invoice()
+                    invoice_val_list['partner_id'] = rec.partner_id and rec.partner_id.id or company_partner_id.id,
+                    invoice_val_list['invoice_partner_bank_id'] = rec.partner_id and rec.partner_id.bank_ids[:1].id \
+                        or company_partner_id.bank_ids[:1].id,
+                    invoice_val_list['invoice_line_ids'] = [0, 0, {
+                        'name': rec.code,
+                        'account_id': 1,
+                        'quantity': 1,
+                        'price_unit': rec.amount,
+                    }]
+                    invoice_val_dicts.append(invoice_val_list)
         return invoice_val_dicts
 
     def generate_sale_invoices(self):

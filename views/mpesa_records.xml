@@ -7,9 +7,11 @@
             <field name="model">station.mpesa.records</field>
             <field name="arch" type="xml">
                 <tree>
+                    <field name="code" />
                     <field name="sender_from" />
                     <field name="amount" />
                     <field name="date" />
+                    <field name="assigned" />
                 </tree>
             </field>
         </record>
@@ -20,10 +22,14 @@
             <field name="model">station.mpesa.records</field>
             <field name="arch" type="xml">
                 <search string="Search Description">
-                    <field name="sender_from" />
+                    <field name="code" />
                     <group expand="1" string="Group By">
                         <filter string="Order Date" name="date" context="{'group_by':'date'}" />
                     </group>
+
+                    <separator />
+                    <filter string="Assigned" name="assigned" domain="[('assigned','=',True)]" />
+                    <filter string="Un Assigned" name="unassigned" domain="[('assigned','=',False)]" />
                 </search>
             </field>
         </record>
@@ -37,6 +43,7 @@
                     <sheet>
                         <group>
                             <group>
+                                <field name="code" />
                                 <field name="sender_from" />
                                 <field name="amount" />
                                 <field name="date" />
@@ -44,6 +51,7 @@
                             <group>
                                 <field name="message" />
                                 <field name="message_id" />
+                                <field name="assigned" />
                             </group>
                         </group>
                     </sheet>
