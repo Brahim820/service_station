@@ -230,13 +230,14 @@
                 <form string="CSA Form">
                     <header>
                         <button type="object" string="Create Employee" class="oe_highlight" name="create_employee" />
-                        <button type="object" string="Create Payout" style="margin-left: 10px;" name="create_payout" />
+                        <button type="action" string="Reconcile" style="margin-left: 10px;" name="%(action_csa_reconciliation)d" context="{'default_total': pending_total}" />
                     </header>
                     <sheet>
                         <group>
                             <group>
                                 <field name="name" />
                                 <field name="job_title" />
+                                <field name="pending_total" invisible="1" />
                             </group>
                             <group>
                                 <field name="phone" />

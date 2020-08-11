@@ -1,5 +1,6 @@
 from odoo import api, fields, models
 from odoo.exceptions import ValidationError
+from datetime import date
 
 
 class MpesaRecordsWizard(models.TransientModel):
@@ -17,42 +18,10 @@ class MpesaRecordsWizard(models.TransientModel):
         record = self.env['station.sales'].browse(
             self._context.get('active_ids', []))
 
-        # mpesa_records = self.env['station.mpesa.records'].search(
-        #     [("date", "=", self.date.strftime('%Y-%m-%d'))])
-        # mpesa_lines = self.env['mpesa.line'].search(
-        #     []).mapped('message_id')
-        # new_id = self.mpesa_messages.mapped('message_id')
-
-        # for d in new_id:
-        #     if d in mpesa_lines:
-        #         raise ValidationError(
-        #             'Some of those mpesa records have been assigned. Please double check and remove records that have assiged checked!.')
-
         for rec in self.mpesa_messages:
             if rec.assigned == True:
                 raise ValidationError(
                     'Remove all records whose assigned value is checked!')
-        # mpesa_set = set()
-        # mpesa_set.update(mpesa_lines)
-        # # print('[mpesa_lines]', mpesa_set)
-
-        # if mpesa_records is None:
-        #     pass
-        # else:
-        #     record.mpesa_line = [(5, 0, 0)]
-
-        #     for rec in mpesa_records:
-        #         # if str(rec.message_id) in mpesa_set:
-        #         vals = {
-        #             'code': rec.sender_from,
-        #             'message': rec.message,
-        #             'amount': rec.amount,
-        #             'message_id': rec.message_id
-        #         }
-
-        #         record.mpesa_line = [(0, 0, vals)]
-        #         # else:
-        #         #     print('dffffffffffffffffffffffffffffffffffffff')
 
         # record.mpesa_line = [(5, 0, 0)]
         for rec in self.mpesa_messages:
@@ -70,3 +39,26 @@ class MpesaRecordsWizard(models.TransientModel):
             })
 
             record.mpesa_line = [(0, 0, vals)]
+
+
+class CsaReconciliation(models.TransientModel):
+    _name = 'csa.reconciliation'
+    _description = 'Handle how Csa shorts and excesses are reconcilled.'
+
+    @api.onchange('amount')
+    def get_pending_balance(self):
+        self.update({'balance': self.total-self.amount})
+
+    amount = fields.Float(string='Amount', required=True)
+    total = fields.Float(string='Total', readonly=True)
+    balance = fields.Float(string='Remaining Balance', readonly=True)
+
+    def action_reconcile(self):
+        record = self.env['station.csa'].browse(
+            self._context.get('active_ids', []))
+
+        record.short_line = [(0, 0, {
+            'date': date.today(),
+            'description': 'reconcile',
+            'amount': self.amount,
+        })]

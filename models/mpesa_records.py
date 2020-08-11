@@ -1,5 +1,6 @@
 from odoo import models, fields, api
 from odoo.exceptions import ValidationError
+# from ...public_html.api.app import work_it
 
 
 class MpesaRecords(models.Model):
@@ -33,3 +34,7 @@ class MpesaRecords(models.Model):
 
         default['code'] = new_code
         return super().copy(default)
+
+    def get_messages_manually(self):
+        # work_it()
+        pass

@@ -29,6 +29,7 @@
 
         'views/station_menu.xml',
         'wizards/wizard.xml',
+        'wizards/csa_reconciliation.xml',
 
         'views/station_sales.xml',
         'views/station_misc.xml',
@@ -37,8 +38,6 @@
 
         'reports/station_sale_report.xml',
         'reports/report.xml',
-
-        # 'views/station_settings.xml',
     ],
 
 }

@@ -78,6 +78,9 @@ class StationCsa(models.Model):
             record.history_line = lines
             record.short_line = [(5, 0, 0)]
 
+    def compute_pending_total(self):
+        self.pending_total = sum(self.short_line.mapped('amount'))
+
     name = fields.Char(string='Name', required=True)
     job_title = fields.Char(string='Job Title', default='CSA', readonly=True)
     email = fields.Char(string='Email')
@@ -89,6 +92,8 @@ class StationCsa(models.Model):
         'csa.short.line', 'csa_id', string='Short Line')
     history_line = fields.One2many(
         'csa.history.line', 'csa_id', string='Histpry Line')
+    pending_total = fields.Float(
+        string='Pending Total', compute="compute_pending_total")
 
 
 class CSAShorts(models.Model):
@@ -99,7 +104,8 @@ class CSAShorts(models.Model):
     date = fields.Date(string='Date')
     description = fields.Selection([
         ('short', 'Short'),
-        ('excess', 'Excess')
+        ('excess', 'Excess'),
+        ('reconcile', 'Reconciled')
     ], string='Description', required=True)
     amount = fields.Float(string='Amount')
     csa_id = fields.Many2one('station.csa', string='CSA Id')
