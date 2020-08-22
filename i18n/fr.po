@@ -1,0 +1,1606 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* service_station
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0-20200617\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-08-22 16:05+0000\n"
+"PO-Revision-Date: 2020-08-22 16:05+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: service_station
+#: model_terms:ir.ui.view,arch_db:service_station.station_stations_view_kanban
+msgid "<b>Manager:</b>"
+msgstr ""
+
+#. module: service_station
+#: model_terms:ir.ui.view,arch_db:service_station.station_csa_view_kanban
+#: model_terms:ir.ui.view,arch_db:service_station.station_pump_view_kanban
+#: model_terms:ir.ui.view,arch_db:service_station.station_stations_view_kanban
+msgid "<b>Name:</b>"
+msgstr "<b>Nom:</b>"
+
+#. module: service_station
+#: model_terms:ir.ui.view,arch_db:service_station.station_csa_view_kanban
+msgid "<b>Phone:</b>"
+msgstr "<b>GSM:</b>"
+
+#. module: service_station
+#: model_terms:ir.ui.view,arch_db:service_station.station_csa_view_kanban
+msgid "<b>Station:</b>"
+msgstr ""
+
+#. module: service_station
+#: model_terms:ir.ui.view,arch_db:service_station.station_pump_view_kanban
+msgid "<b>Status:</b>"
+msgstr "<b>Statu:</b>"
+
+#. module: service_station
+#: model_terms:ir.ui.view,arch_db:service_station.action_csa_reconciliation_form
+msgid "<span colspan=\"4\" nolabel=\"1\">\n"
+"                            Enter the amount that the Agent wishes to reconcile against their pending shorts.\n"
+"                            <br/>\n"
+"                            The total value shows the pending amount the Agent owes.\n"
+"                        </span>"
+msgstr ""
+
+#. module: service_station
+#: model_terms:ir.ui.view,arch_db:service_station.action_mpesa_records_form
+msgid "<span colspan=\"4\" nolabel=\"1\">\n"
+"                            Select Mpesa Messages, and populate them down at the mpesa lines.\n"
+"                            <br/>\n"
+"                            Messages are already filtered by date.\n"
+"                        </span>"
+msgstr "<span colspan=\"4\" nolabel=\"1\">\n"
+"                            Sélectionnez Messages mpesa et remplissez-les au niveau des lignes mpesa.\n"
+"                            <br/>\n"
+"                            Les messages sont déjà filtrés par date.\n"
+"                        </span>"
+
+#. module: service_station
+#: model_terms:ir.ui.view,arch_db:service_station.station_sales_report
+msgid "<span>Cash Drop</span>"
+msgstr "<span>Baisse de Trésorerie</span>"
+
+#. module: service_station
+#: model_terms:ir.ui.view,arch_db:service_station.station_sales_report
+msgid "<span>Cash Required</span>"
+msgstr "<span>Espèces requises</span>"
+
+#. module: service_station
+#: model_terms:ir.ui.view,arch_db:service_station.station_sales_report
+msgid "<span>Excess</span>"
+msgstr "<span>Excédent</span>"
+
+#. module: service_station
+#: model_terms:ir.ui.view,arch_db:service_station.station_sales_report
+msgid "<span>Short</span>"
+msgstr "<span>Court</span>"
+
+#. module: service_station
+#: model_terms:ir.ui.view,arch_db:service_station.station_sales_report
+msgid "<span>Total credits</span>"
+msgstr "<span>Total des crédits</span>"
+
+#. module: service_station
+#: model_terms:ir.ui.view,arch_db:service_station.station_sales_report
+msgid "<strong> CSA : </strong>"
+msgstr ""
+
+#. module: service_station
+#: model_terms:ir.ui.view,arch_db:service_station.station_sales_report
+msgid "<strong> Date : </strong>"
+msgstr ""
+
+#. module: service_station
+#: model_terms:ir.ui.view,arch_db:service_station.station_sales_report
+msgid "<strong> Pump : </strong>"
+msgstr "<strong>Pompe: </strong>"
+
+#. module: service_station
+#: model_terms:ir.ui.view,arch_db:service_station.station_sales_report
+msgid "<strong>Amount Untaxed</strong>"
+msgstr "<strong> Montant HT </strong>"
+
+#. module: service_station
+#: model_terms:ir.ui.view,arch_db:service_station.report_drop_sales_form
+msgid "<strong>Cash Drop Total: </strong>"
+msgstr "<strong>Total de la baisse de trésorerie: </strong>"
+
+#. module: service_station
+#: model_terms:ir.ui.view,arch_db:service_station.station_sales_report
+msgid "<strong>Fuel Sales: </strong>"
+msgstr "<strong>Ventes de carburant: </strong>"
+
+#. module: service_station
+#: model_terms:ir.ui.view,arch_db:service_station.report_invoices_sales_form
+msgid "<strong>Invoices Total: </strong>"
+msgstr "<strong>Total des factures: </strong>"
+
+#. module: service_station
+#: model_terms:ir.ui.view,arch_db:service_station.report_loyalty_card_sales_form
+msgid "<strong>Loyalty Cards Total: </strong>"
+msgstr "<strong>Total des cartes de fidélité: </strong>"
+
+#. module: service_station
+#: model_terms:ir.ui.view,arch_db:service_station.report_mpesa_sales_form
+msgid "<strong>Mpesa Total: </strong>"
+msgstr ""
+
+#. module: service_station
+#: model_terms:ir.ui.view,arch_db:service_station.report_shell_pos_sales_form
+msgid "<strong>Shell Pos Total: </strong>"
+msgstr "<strong> Total Pos Shell: </strong>"
+
+#. module: service_station
+#: model_terms:ir.ui.view,arch_db:service_station.station_sales_report
+msgid "<strong>Tax Amount</strong>"
+msgstr "<strong>Montant de la taxe</strong>"
+
+#. module: service_station
+#: model_terms:ir.ui.view,arch_db:service_station.station_sales_report
+msgid "<strong>Total Amount</strong>"
+msgstr "<strong>Montant total</strong>"
+
+#. module: service_station
+#: model_terms:ir.ui.view,arch_db:service_station.report_visa_sales_form
+msgid "<strong>Visa Total: </strong>"
+msgstr "<strong> Total Visa: </strong>"
+
+#. module: service_station
+#: model:ir.model.fields,field_description:service_station.field_station_sales__message_needaction
+msgid "Action Needed"
+msgstr "Nécessite une action"
+
+#. module: service_station
+#: selection:station.pump,status:0
+msgid "Active"
+msgstr ""
+
+#. module: service_station
+#: model:ir.model.fields,field_description:service_station.field_station_pump__activity_ids
+#: model:ir.model.fields,field_description:service_station.field_station_sales__activity_ids
+#: model:ir.model.fields,field_description:service_station.field_station_stations__activity_ids
+msgid "Activities"
+msgstr "Activités"
+
+#. module: service_station
+#: model:ir.model.fields,field_description:service_station.field_station_pump__activity_state
+#: model:ir.model.fields,field_description:service_station.field_station_sales__activity_state
+#: model:ir.model.fields,field_description:service_station.field_station_stations__activity_state
+msgid "Activity State"
+msgstr "Status de l'Activité"
+
+#. module: service_station
+#: model_terms:ir.ui.view,arch_db:service_station.action_mpesa_records_form
+msgid "Add Records"
+msgstr "Ajouter Enregistrements"
+
+#. module: service_station
+#: model:ir.model,name:service_station.model_station_stations
+msgid "Add a station, configure their pumps and nozzles."
+msgstr "Ajouter une station, configurer leurs pompes et leurs buses"
+
+#. module: service_station
+#: model:ir.model.fields,field_description:service_station.field_csa_history_line__amount
+#: model:ir.model.fields,field_description:service_station.field_csa_reconciliation__amount
+#: model:ir.model.fields,field_description:service_station.field_csa_short_line__amount
+#: model:ir.model.fields,field_description:service_station.field_drop_line__amount
+#: model:ir.model.fields,field_description:service_station.field_invoices_line__amount
+#: model:ir.model.fields,field_description:service_station.field_loyalty_cards_line__amount
+#: model:ir.model.fields,field_description:service_station.field_mpesa_line__amount
+#: model:ir.model.fields,field_description:service_station.field_nozzle_record_line__amount
+#: model:ir.model.fields,field_description:service_station.field_shell_pos_line__amount
+#: model:ir.model.fields,field_description:service_station.field_station_mpesa_records__amount
+#: model:ir.model.fields,field_description:service_station.field_visa_line__amount
+#: model_terms:ir.ui.view,arch_db:service_station.report_drop_sales_form
+#: model_terms:ir.ui.view,arch_db:service_station.report_invoices_sales_form
+#: model_terms:ir.ui.view,arch_db:service_station.report_loyalty_card_sales_form
+#: model_terms:ir.ui.view,arch_db:service_station.report_mpesa_sales_form
+#: model_terms:ir.ui.view,arch_db:service_station.report_shell_pos_sales_form
+#: model_terms:ir.ui.view,arch_db:service_station.report_visa_sales_form
+#: model_terms:ir.ui.view,arch_db:service_station.station_sales_report
+msgid "Amount"
+msgstr "Montant"
+
+#. module: service_station
+#: model_terms:ir.ui.view,arch_db:service_station.station_misc_view_form
+#: model_terms:ir.ui.view,arch_db:service_station.station_sales_view_form
+msgid "Approve"
+msgstr "Approuver"
+
+#. module: service_station
+#: model:ir.model.fields,field_description:service_station.field_station_mpesa_records__assigned
+#: model_terms:ir.ui.view,arch_db:service_station.station_mpesa_view_search
+msgid "Assigned"
+msgstr "Attribué"
+
+#. module: service_station
+#: model:ir.model.fields,field_description:service_station.field_station_sales__message_attachment_count
+msgid "Attachment Count"
+msgstr "Nombre de pièces jointes"
+
+#. module: service_station
+#: model:ir.model.fields,field_description:service_station.field_station_sales__csa_id
+#: model:ir.ui.menu,name:service_station.station_csa_menu
+#: model_terms:ir.ui.view,arch_db:service_station.csa_short_line_view_form
+#: model_terms:ir.ui.view,arch_db:service_station.csa_short_line_view_search
+#: model_terms:ir.ui.view,arch_db:service_station.csa_short_line_view_tree
+#: model_terms:ir.ui.view,arch_db:service_station.station_sales_view_search
+msgid "CSA"
+msgstr ""
+
+#. module: service_station
+#: model_terms:ir.ui.view,arch_db:service_station.station_csa_view_form
+msgid "CSA Form"
+msgstr "Formulaire CSA"
+
+#. module: service_station
+#: model:ir.model.fields,field_description:service_station.field_csa_history_line__csa_id
+#: model:ir.model.fields,field_description:service_station.field_csa_short_line__csa_id
+msgid "CSA Id"
+msgstr ""
+
+#. module: service_station
+#: model_terms:ir.ui.view,arch_db:service_station.action_csa_reconciliation_form
+#: model_terms:ir.ui.view,arch_db:service_station.action_mpesa_records_form
+#: model_terms:ir.ui.view,arch_db:service_station.station_misc_view_form
+#: model_terms:ir.ui.view,arch_db:service_station.station_sales_view_form
+msgid "Cancel"
+msgstr "Annuler"
+
+#. module: service_station
+#: model_terms:ir.ui.view,arch_db:service_station.station_pump_view_form
+msgid "Caption"
+msgstr "légende"
+
+#. module: service_station
+#: model_terms:ir.ui.view,arch_db:service_station.station_sales_view_form
+msgid "Cash Drop"
+msgstr ""
+
+#. module: service_station
+#: model_terms:ir.ui.view,arch_db:service_station.station_sales_report
+msgid "Cash Drop Records"
+msgstr ""
+
+#. module: service_station
+#: model:ir.model.fields,field_description:service_station.field_station_sales__drop_total
+msgid "Cash Drop Total"
+msgstr ""
+
+#. module: service_station
+#: model:ir.model.fields,field_description:service_station.field_station_sales__cash_required
+msgid "Cash Required"
+msgstr "Espèces requises"
+
+#. module: service_station
+#: model:ir.module.category,description:service_station.module_service_station_category
+msgid "Category for Service Station"
+msgstr "Catégorie pour station-service"
+
+#. module: service_station
+#: model:ir.model.fields,field_description:service_station.field_station_sales__sales_mode_id
+msgid "Choice"
+msgstr "Choix"
+
+#. module: service_station
+#: model:ir.model.fields,field_description:service_station.field_drop_line__code
+#: model:ir.model.fields,field_description:service_station.field_invoices_line__code
+#: model:ir.model.fields,field_description:service_station.field_loyalty_cards_line__code
+#: model:ir.model.fields,field_description:service_station.field_mpesa_line__code
+#: model:ir.model.fields,field_description:service_station.field_shell_pos_line__code
+#: model:ir.model.fields,field_description:service_station.field_station_mpesa_records__code
+#: model:ir.model.fields,field_description:service_station.field_visa_line__code
+#: model_terms:ir.ui.view,arch_db:service_station.report_drop_sales_form
+#: model_terms:ir.ui.view,arch_db:service_station.report_invoices_sales_form
+#: model_terms:ir.ui.view,arch_db:service_station.report_loyalty_card_sales_form
+#: model_terms:ir.ui.view,arch_db:service_station.report_mpesa_sales_form
+#: model_terms:ir.ui.view,arch_db:service_station.report_shell_pos_sales_form
+#: model_terms:ir.ui.view,arch_db:service_station.report_visa_sales_form
+msgid "Code"
+msgstr ""
+
+#. module: service_station
+#: model:ir.model,name:service_station.model_res_config_settings
+msgid "Config Settings"
+msgstr "Paramètres de config"
+
+#. module: service_station
+#: model:ir.model,name:service_station.model_station_pump
+msgid "Create And Manage a pump"
+msgstr "Créer et gérer une pompe"
+
+#. module: service_station
+#: model_terms:ir.ui.view,arch_db:service_station.station_csa_view_form
+msgid "Create Employee"
+msgstr "Créer un employé"
+
+#. module: service_station
+#: model:ir.model,name:service_station.model_nozzle_misc
+msgid "Create Nozzle Lines"
+msgstr "Créer des lignes de buse"
+
+#. module: service_station
+#: model_terms:ir.ui.view,arch_db:service_station.action_csa_reconciliation_form
+msgid "Create Payout"
+msgstr "Créer un paiement"
+
+#. module: service_station
+#: model_terms:ir.actions.act_window,help:service_station.station_pump_action
+msgid "Create Pumps"
+msgstr "Créer des pompes"
+
+#. module: service_station
+#: model_terms:ir.actions.act_window,help:service_station.station_station_action
+msgid "Create Stations"
+msgstr "Créer des stations"
+
+#. module: service_station
+#: model_terms:ir.actions.act_window,help:service_station.station_csa_action
+msgid "Create a new Contipartner Sales Agent!"
+msgstr "Créez un nouvel agent de vente contipartner!"
+
+#. module: service_station
+#: model_terms:ir.actions.act_window,help:service_station.station_short_or_excess_action
+msgid "Create a short or an excess to a CSA's name."
+msgstr "Créez un court ou un excédent au nom d'un CSA."
+
+#. module: service_station
+#: model:ir.model.fields,field_description:service_station.field_csa_history_line__create_uid
+#: model:ir.model.fields,field_description:service_station.field_csa_reconciliation__create_uid
+#: model:ir.model.fields,field_description:service_station.field_csa_short_line__create_uid
+#: model:ir.model.fields,field_description:service_station.field_drop_line__create_uid
+#: model:ir.model.fields,field_description:service_station.field_invoices_line__create_uid
+#: model:ir.model.fields,field_description:service_station.field_loyalty_cards_line__create_uid
+#: model:ir.model.fields,field_description:service_station.field_mpesa_line__create_uid
+#: model:ir.model.fields,field_description:service_station.field_mpesa_records_wizard__create_uid
+#: model:ir.model.fields,field_description:service_station.field_nozzle_misc__create_uid
+#: model:ir.model.fields,field_description:service_station.field_nozzle_record_line__create_uid
+#: model:ir.model.fields,field_description:service_station.field_shell_pos_line__create_uid
+#: model:ir.model.fields,field_description:service_station.field_station_csa__create_uid
+#: model:ir.model.fields,field_description:service_station.field_station_misc__create_uid
+#: model:ir.model.fields,field_description:service_station.field_station_mpesa_records__create_uid
+#: model:ir.model.fields,field_description:service_station.field_station_nozzles__create_uid
+#: model:ir.model.fields,field_description:service_station.field_station_pump__create_uid
+#: model:ir.model.fields,field_description:service_station.field_station_sales__create_uid
+#: model:ir.model.fields,field_description:service_station.field_station_settings__create_uid
+#: model:ir.model.fields,field_description:service_station.field_station_stations__create_uid
+#: model:ir.model.fields,field_description:service_station.field_visa_line__create_uid
+msgid "Created by"
+msgstr "Créé par"
+
+#. module: service_station
+#: model:ir.model.fields,field_description:service_station.field_csa_history_line__create_date
+#: model:ir.model.fields,field_description:service_station.field_csa_reconciliation__create_date
+#: model:ir.model.fields,field_description:service_station.field_csa_short_line__create_date
+#: model:ir.model.fields,field_description:service_station.field_drop_line__create_date
+#: model:ir.model.fields,field_description:service_station.field_invoices_line__create_date
+#: model:ir.model.fields,field_description:service_station.field_loyalty_cards_line__create_date
+#: model:ir.model.fields,field_description:service_station.field_mpesa_line__create_date
+#: model:ir.model.fields,field_description:service_station.field_mpesa_records_wizard__create_date
+#: model:ir.model.fields,field_description:service_station.field_nozzle_misc__create_date
+#: model:ir.model.fields,field_description:service_station.field_nozzle_record_line__create_date
+#: model:ir.model.fields,field_description:service_station.field_shell_pos_line__create_date
+#: model:ir.model.fields,field_description:service_station.field_station_csa__create_date
+#: model:ir.model.fields,field_description:service_station.field_station_misc__create_date
+#: model:ir.model.fields,field_description:service_station.field_station_mpesa_records__create_date
+#: model:ir.model.fields,field_description:service_station.field_station_nozzles__create_date
+#: model:ir.model.fields,field_description:service_station.field_station_pump__create_date
+#: model:ir.model.fields,field_description:service_station.field_station_sales__create_date
+#: model:ir.model.fields,field_description:service_station.field_station_settings__create_date
+#: model:ir.model.fields,field_description:service_station.field_station_stations__create_date
+#: model:ir.model.fields,field_description:service_station.field_visa_line__create_date
+msgid "Created on"
+msgstr "Créé le"
+
+#. module: service_station
+#: model:ir.actions.act_window,name:service_station.action_csa_reconciliation
+msgid "Csa Reconciliation"
+msgstr ""
+
+#. module: service_station
+#: model:ir.model.fields,field_description:service_station.field_drop_line__currency_id
+#: model:ir.model.fields,field_description:service_station.field_invoices_line__currency_id
+#: model:ir.model.fields,field_description:service_station.field_loyalty_cards_line__currency_id
+#: model:ir.model.fields,field_description:service_station.field_mpesa_line__currency_id
+#: model:ir.model.fields,field_description:service_station.field_nozzle_record_line__currency_id
+#: model:ir.model.fields,field_description:service_station.field_shell_pos_line__currency_id
+#: model:ir.model.fields,field_description:service_station.field_station_sales__currency_id
+#: model:ir.model.fields,field_description:service_station.field_visa_line__currency_id
+msgid "Currency"
+msgstr "Devise"
+
+#. module: service_station
+#: model:ir.model.fields,field_description:service_station.field_station_nozzles__current_reading
+msgid "Current Readings"
+msgstr "Lectures actuelles"
+
+#. module: service_station
+#: model:ir.model.fields,field_description:service_station.field_drop_line__partner_id
+#: model:ir.model.fields,field_description:service_station.field_invoices_line__partner_id
+#: model:ir.model.fields,field_description:service_station.field_loyalty_cards_line__partner_id
+#: model:ir.model.fields,field_description:service_station.field_mpesa_line__partner_id
+#: model:ir.model.fields,field_description:service_station.field_shell_pos_line__partner_id
+#: model:ir.model.fields,field_description:service_station.field_visa_line__partner_id
+#: model_terms:ir.ui.view,arch_db:service_station.report_drop_sales_form
+#: model_terms:ir.ui.view,arch_db:service_station.report_invoices_sales_form
+#: model_terms:ir.ui.view,arch_db:service_station.report_loyalty_card_sales_form
+#: model_terms:ir.ui.view,arch_db:service_station.report_mpesa_sales_form
+#: model_terms:ir.ui.view,arch_db:service_station.report_shell_pos_sales_form
+#: model_terms:ir.ui.view,arch_db:service_station.report_visa_sales_form
+msgid "Customer"
+msgstr "Client"
+
+#. module: service_station
+#: model:ir.model.fields,field_description:service_station.field_csa_history_line__date
+#: model:ir.model.fields,field_description:service_station.field_csa_short_line__date
+#: model:ir.model.fields,field_description:service_station.field_mpesa_records_wizard__date
+#: model:ir.model.fields,field_description:service_station.field_station_misc__date
+#: model:ir.model.fields,field_description:service_station.field_station_mpesa_records__date
+#: model:ir.model.fields,field_description:service_station.field_station_sales__date
+#: model_terms:ir.ui.view,arch_db:service_station.csa_short_line_view_search
+#: model_terms:ir.ui.view,arch_db:service_station.station_sales_view_search
+msgid "Date"
+msgstr "Date "
+
+#. module: service_station
+#: model_terms:ir.ui.view,arch_db:service_station.station_csa_view_kanban
+#: model_terms:ir.ui.view,arch_db:service_station.station_pump_view_kanban
+#: model_terms:ir.ui.view,arch_db:service_station.station_stations_view_kanban
+msgid "Delete"
+msgstr "Supprimer"
+
+#. module: service_station
+#: model:ir.model.fields,field_description:service_station.field_csa_history_line__description
+#: model:ir.model.fields,field_description:service_station.field_csa_short_line__description
+msgid "Description"
+msgstr ""
+
+#. module: service_station
+#: model:ir.model.fields,field_description:service_station.field_csa_history_line__display_name
+#: model:ir.model.fields,field_description:service_station.field_csa_reconciliation__display_name
+#: model:ir.model.fields,field_description:service_station.field_csa_short_line__display_name
+#: model:ir.model.fields,field_description:service_station.field_drop_line__display_name
+#: model:ir.model.fields,field_description:service_station.field_invoices_line__display_name
+#: model:ir.model.fields,field_description:service_station.field_loyalty_cards_line__display_name
+#: model:ir.model.fields,field_description:service_station.field_mpesa_line__display_name
+#: model:ir.model.fields,field_description:service_station.field_mpesa_records_wizard__display_name
+#: model:ir.model.fields,field_description:service_station.field_nozzle_misc__display_name
+#: model:ir.model.fields,field_description:service_station.field_nozzle_record_line__display_name
+#: model:ir.model.fields,field_description:service_station.field_shell_pos_line__display_name
+#: model:ir.model.fields,field_description:service_station.field_station_csa__display_name
+#: model:ir.model.fields,field_description:service_station.field_station_misc__display_name
+#: model:ir.model.fields,field_description:service_station.field_station_mpesa_records__display_name
+#: model:ir.model.fields,field_description:service_station.field_station_nozzles__display_name
+#: model:ir.model.fields,field_description:service_station.field_station_pump__display_name
+#: model:ir.model.fields,field_description:service_station.field_station_sales__display_name
+#: model:ir.model.fields,field_description:service_station.field_station_settings__display_name
+#: model:ir.model.fields,field_description:service_station.field_station_stations__display_name
+#: model:ir.model.fields,field_description:service_station.field_visa_line__display_name
+msgid "Display Name"
+msgstr "Nom affiché"
+
+#. module: service_station
+#: selection:station.misc,state:0
+#: selection:station.sales,state:0
+msgid "Draft"
+msgstr "Brouillon"
+
+#. module: service_station
+#: model_terms:ir.ui.view,arch_db:service_station.station_sales_view_search
+msgid "Drafted"
+msgstr "Préparer"
+
+#. module: service_station
+#: model:ir.model.fields,field_description:service_station.field_drop_line__drop_id
+msgid "Drop Id"
+msgstr ""
+
+#. module: service_station
+#: model:ir.model.fields,field_description:service_station.field_station_sales__drop_line
+msgid "Drop Line"
+msgstr ""
+
+#. module: service_station
+#: model:ir.model,name:service_station.model_drop_line
+msgid "Drop cash at the register"
+msgstr ""
+
+#. module: service_station
+#: model_terms:ir.ui.view,arch_db:service_station.station_csa_view_kanban
+#: model_terms:ir.ui.view,arch_db:service_station.station_pump_view_kanban
+#: model_terms:ir.ui.view,arch_db:service_station.station_stations_view_kanban
+msgid "Dropdown menu"
+msgstr "Menu déroulant"
+
+#. module: service_station
+#: model:ir.model.fields,field_description:service_station.field_drop_line__drop_by
+msgid "Dropped By"
+msgstr ""
+
+#. module: service_station
+#: model_terms:ir.ui.view,arch_db:service_station.station_csa_view_kanban
+#: model_terms:ir.ui.view,arch_db:service_station.station_pump_view_kanban
+#: model_terms:ir.ui.view,arch_db:service_station.station_stations_view_kanban
+msgid "Edit"
+msgstr "Éditer"
+
+#. module: service_station
+#: model:ir.model.fields,field_description:service_station.field_nozzle_record_line__eclose
+msgid "Elec. Close"
+msgstr "Elec Fermer"
+
+#. module: service_station
+#: model:ir.model.fields,field_description:service_station.field_nozzle_record_line__eopen
+msgid "Elec. Open"
+msgstr "Elec Ouvrir"
+
+#. module: service_station
+#: model:ir.model.fields,field_description:service_station.field_nozzle_misc__eclose
+#: model_terms:ir.ui.view,arch_db:service_station.station_sales_report
+msgid "Electric Close"
+msgstr "Electrique Fermer"
+
+#. module: service_station
+#: model:ir.model.fields,field_description:service_station.field_nozzle_misc__eopen
+#: model_terms:ir.ui.view,arch_db:service_station.station_sales_report
+msgid "Electric Open"
+msgstr "Electrique Ovrir"
+
+#. module: service_station
+#: model:ir.model.fields,field_description:service_station.field_station_csa__email
+msgid "Email"
+msgstr "Courriel"
+
+#. module: service_station
+#: selection:csa.history.line,description:0
+#: selection:csa.short.line,description:0
+msgid "Excess"
+msgstr "Excès"
+
+#. module: service_station
+#: model_terms:ir.ui.view,arch_db:service_station.csa_short_line_view_search
+msgid "Excesses"
+msgstr "Les excès"
+
+#. module: service_station
+#: model_terms:ir.ui.view,arch_db:service_station.station_sales_view_form
+msgid "Extra Information"
+msgstr "Informations supplémentaires"
+
+#. module: service_station
+#: model:ir.ui.menu,name:service_station.station_configuration_menu
+msgid "Extras"
+msgstr "Suppléments"
+
+#. module: service_station
+#: model:ir.model.fields,field_description:service_station.field_station_sales__message_follower_ids
+msgid "Followers"
+msgstr "Abonnés"
+
+#. module: service_station
+#: model:ir.model.fields,field_description:service_station.field_station_sales__message_channel_ids
+msgid "Followers (Channels)"
+msgstr "Abonnés (Canaux)"
+
+#. module: service_station
+#: model:ir.model.fields,field_description:service_station.field_station_sales__message_partner_ids
+msgid "Followers (Partners)"
+msgstr "Abonnés (Partenaires)"
+
+#. module: service_station
+#: model:ir.model.fields,field_description:service_station.field_station_mpesa_records__sender_from
+msgid "From"
+msgstr "De"
+
+#. module: service_station
+#: model:ir.model.fields,field_description:service_station.field_station_sales__fuel_sales
+msgid "Fuel Sales"
+msgstr "Ventes de carburant"
+
+#. module: service_station
+#: model_terms:ir.ui.view,arch_db:service_station.station_sales_view_form
+msgid "Generate Invoices"
+msgstr ""
+
+#. module: service_station
+#: model_terms:ir.ui.view,arch_db:service_station.station_mpesa_view_form
+msgid "Get Messages Manually"
+msgstr ""
+
+#. module: service_station
+#: model_terms:ir.ui.view,arch_db:service_station.action_mpesa_records_form
+msgid "Get Mpesa Records"
+msgstr "Obtenez des enregistrements Mpesa"
+
+#. module: service_station
+#: model:ir.model,name:service_station.model_mpesa_records_wizard
+msgid "Get Mpesa Records for a particular date"
+msgstr "Obtenez des enregistrements Mpesa pour une date particulière"
+
+#. module: service_station
+#: model:ir.model,name:service_station.model_station_mpesa_records
+msgid "Get Mpesa Records from SMSSync"
+msgstr "Obtenir des enregistrements Mpesa de SMSSync"
+
+#. module: service_station
+#: model_terms:ir.ui.view,arch_db:service_station.csa_short_line_view_search
+#: model_terms:ir.ui.view,arch_db:service_station.station_mpesa_view_search
+#: model_terms:ir.ui.view,arch_db:service_station.station_sales_view_search
+msgid "Group By"
+msgstr "Regrouper par"
+
+#. module: service_station
+#: model:ir.model,name:service_station.model_csa_reconciliation
+msgid "Handle how Csa shorts and excesses are reconcilled."
+msgstr ""
+
+#. module: service_station
+#: model_terms:ir.ui.view,arch_db:service_station.station_csa_view_form
+msgid "History"
+msgstr "Historique"
+
+#. module: service_station
+#: model:ir.model.fields,field_description:service_station.field_station_csa__history_line
+msgid "Histpry Line"
+msgstr ""
+
+#. module: service_station
+#: model:ir.model.fields,field_description:service_station.field_csa_history_line__id
+#: model:ir.model.fields,field_description:service_station.field_csa_reconciliation__id
+#: model:ir.model.fields,field_description:service_station.field_csa_short_line__id
+#: model:ir.model.fields,field_description:service_station.field_drop_line__id
+#: model:ir.model.fields,field_description:service_station.field_invoices_line__id
+#: model:ir.model.fields,field_description:service_station.field_loyalty_cards_line__id
+#: model:ir.model.fields,field_description:service_station.field_mpesa_line__id
+#: model:ir.model.fields,field_description:service_station.field_mpesa_records_wizard__id
+#: model:ir.model.fields,field_description:service_station.field_nozzle_misc__id
+#: model:ir.model.fields,field_description:service_station.field_nozzle_record_line__id
+#: model:ir.model.fields,field_description:service_station.field_shell_pos_line__id
+#: model:ir.model.fields,field_description:service_station.field_station_csa__id
+#: model:ir.model.fields,field_description:service_station.field_station_misc__id
+#: model:ir.model.fields,field_description:service_station.field_station_mpesa_records__id
+#: model:ir.model.fields,field_description:service_station.field_station_nozzles__id
+#: model:ir.model.fields,field_description:service_station.field_station_pump__id
+#: model:ir.model.fields,field_description:service_station.field_station_sales__id
+#: model:ir.model.fields,field_description:service_station.field_station_settings__id
+#: model:ir.model.fields,field_description:service_station.field_station_stations__id
+#: model:ir.model.fields,field_description:service_station.field_visa_line__id
+msgid "ID"
+msgstr ""
+
+#. module: service_station
+#: model:ir.model.fields,field_description:service_station.field_station_nozzles__inherited_id
+msgid "Id"
+msgstr ""
+
+#. module: service_station
+#: model:ir.model.fields,field_description:service_station.field_station_csa__id_number
+msgid "Id Number"
+msgstr ""
+
+#. module: service_station
+#: model:ir.model.fields,help:service_station.field_station_sales__message_unread
+msgid "If checked new messages require your attention."
+msgstr "Si coché, de nouveaux messages demandent votre attention."
+
+#. module: service_station
+#: model:ir.model.fields,help:service_station.field_station_sales__message_needaction
+msgid "If checked, new messages require your attention."
+msgstr "Si coché, de nouveaux messages demandent votre attention."
+
+#. module: service_station
+#: model:ir.model.fields,help:service_station.field_station_sales__message_has_error
+msgid "If checked, some messages have a delivery error."
+msgstr "Si actif, certains messages ont une erreur de livraison."
+
+#. module: service_station
+#: model_terms:ir.ui.view,arch_db:service_station.station_sales_report
+msgid "Information"
+msgstr ""
+
+#. module: service_station
+#: model_terms:ir.ui.view,arch_db:service_station.station_sales_view_search
+#: selection:station.sales,state:0
+msgid "Invoiced"
+msgstr "Facturé"
+
+#. module: service_station
+#: model:ir.model.fields,field_description:service_station.field_station_sales__invoice_ids
+#: model:ir.model.fields,field_description:service_station.field_station_sales__invoices_count
+#: model_terms:ir.ui.view,arch_db:service_station.station_sales_view_form
+msgid "Invoices"
+msgstr "Factures"
+
+#. module: service_station
+#: model:ir.model.fields,field_description:service_station.field_invoices_line__invoices_id
+msgid "Invoices Id"
+msgstr "Id Factures"
+
+#. module: service_station
+#: model:ir.model.fields,field_description:service_station.field_station_sales__invoices_line
+msgid "Invoices Line"
+msgstr "Ligne Factures"
+
+#. module: service_station
+#: model:ir.model,name:service_station.model_invoices_line
+msgid "Invoices Payment Line"
+msgstr "Ligne de paiement des factures"
+
+#. module: service_station
+#: model_terms:ir.ui.view,arch_db:service_station.station_sales_report
+msgid "Invoices Records"
+msgstr "Registres de factures"
+
+#. module: service_station
+#: model:ir.model.fields,field_description:service_station.field_station_sales__invoices_total
+msgid "Invoices Total"
+msgstr "Total des factures"
+
+#. module: service_station
+#: model:ir.model.fields,field_description:service_station.field_station_pump__is_active
+msgid "Is Active"
+msgstr "Est Actif"
+
+#. module: service_station
+#: model:ir.model.fields,field_description:service_station.field_station_sales__message_is_follower
+msgid "Is Follower"
+msgstr "Est un abonné"
+
+#. module: service_station
+#: model:ir.model.fields,field_description:service_station.field_station_csa__job_title
+msgid "Job Title"
+msgstr "Titre du poste"
+
+#. module: service_station
+#: model:ir.model,name:service_station.model_csa_history_line
+msgid "Keep track of all CSA short or excess that has been cleared"
+msgstr "Gardez une trace de tous les CSA courts ou excédentaires qui ont été compensés"
+
+#. module: service_station
+#: model:ir.model.fields,field_description:service_station.field_csa_history_line____last_update
+#: model:ir.model.fields,field_description:service_station.field_csa_reconciliation____last_update
+#: model:ir.model.fields,field_description:service_station.field_csa_short_line____last_update
+#: model:ir.model.fields,field_description:service_station.field_drop_line____last_update
+#: model:ir.model.fields,field_description:service_station.field_invoices_line____last_update
+#: model:ir.model.fields,field_description:service_station.field_loyalty_cards_line____last_update
+#: model:ir.model.fields,field_description:service_station.field_mpesa_line____last_update
+#: model:ir.model.fields,field_description:service_station.field_mpesa_records_wizard____last_update
+#: model:ir.model.fields,field_description:service_station.field_nozzle_misc____last_update
+#: model:ir.model.fields,field_description:service_station.field_nozzle_record_line____last_update
+#: model:ir.model.fields,field_description:service_station.field_shell_pos_line____last_update
+#: model:ir.model.fields,field_description:service_station.field_station_csa____last_update
+#: model:ir.model.fields,field_description:service_station.field_station_misc____last_update
+#: model:ir.model.fields,field_description:service_station.field_station_mpesa_records____last_update
+#: model:ir.model.fields,field_description:service_station.field_station_nozzles____last_update
+#: model:ir.model.fields,field_description:service_station.field_station_pump____last_update
+#: model:ir.model.fields,field_description:service_station.field_station_sales____last_update
+#: model:ir.model.fields,field_description:service_station.field_station_settings____last_update
+#: model:ir.model.fields,field_description:service_station.field_station_stations____last_update
+#: model:ir.model.fields,field_description:service_station.field_visa_line____last_update
+msgid "Last Modified on"
+msgstr "Dernière modification le"
+
+#. module: service_station
+#: model:ir.model.fields,field_description:service_station.field_csa_history_line__write_uid
+#: model:ir.model.fields,field_description:service_station.field_csa_reconciliation__write_uid
+#: model:ir.model.fields,field_description:service_station.field_csa_short_line__write_uid
+#: model:ir.model.fields,field_description:service_station.field_drop_line__write_uid
+#: model:ir.model.fields,field_description:service_station.field_invoices_line__write_uid
+#: model:ir.model.fields,field_description:service_station.field_loyalty_cards_line__write_uid
+#: model:ir.model.fields,field_description:service_station.field_mpesa_line__write_uid
+#: model:ir.model.fields,field_description:service_station.field_mpesa_records_wizard__write_uid
+#: model:ir.model.fields,field_description:service_station.field_nozzle_misc__write_uid
+#: model:ir.model.fields,field_description:service_station.field_nozzle_record_line__write_uid
+#: model:ir.model.fields,field_description:service_station.field_shell_pos_line__write_uid
+#: model:ir.model.fields,field_description:service_station.field_station_csa__write_uid
+#: model:ir.model.fields,field_description:service_station.field_station_misc__write_uid
+#: model:ir.model.fields,field_description:service_station.field_station_mpesa_records__write_uid
+#: model:ir.model.fields,field_description:service_station.field_station_nozzles__write_uid
+#: model:ir.model.fields,field_description:service_station.field_station_pump__write_uid
+#: model:ir.model.fields,field_description:service_station.field_station_sales__write_uid
+#: model:ir.model.fields,field_description:service_station.field_station_settings__write_uid
+#: model:ir.model.fields,field_description:service_station.field_station_stations__write_uid
+#: model:ir.model.fields,field_description:service_station.field_visa_line__write_uid
+msgid "Last Updated by"
+msgstr "Dernière mise à jour par"
+
+#. module: service_station
+#: model:ir.model.fields,field_description:service_station.field_csa_history_line__write_date
+#: model:ir.model.fields,field_description:service_station.field_csa_reconciliation__write_date
+#: model:ir.model.fields,field_description:service_station.field_csa_short_line__write_date
+#: model:ir.model.fields,field_description:service_station.field_drop_line__write_date
+#: model:ir.model.fields,field_description:service_station.field_invoices_line__write_date
+#: model:ir.model.fields,field_description:service_station.field_loyalty_cards_line__write_date
+#: model:ir.model.fields,field_description:service_station.field_mpesa_line__write_date
+#: model:ir.model.fields,field_description:service_station.field_mpesa_records_wizard__write_date
+#: model:ir.model.fields,field_description:service_station.field_nozzle_misc__write_date
+#: model:ir.model.fields,field_description:service_station.field_nozzle_record_line__write_date
+#: model:ir.model.fields,field_description:service_station.field_shell_pos_line__write_date
+#: model:ir.model.fields,field_description:service_station.field_station_csa__write_date
+#: model:ir.model.fields,field_description:service_station.field_station_misc__write_date
+#: model:ir.model.fields,field_description:service_station.field_station_mpesa_records__write_date
+#: model:ir.model.fields,field_description:service_station.field_station_nozzles__write_date
+#: model:ir.model.fields,field_description:service_station.field_station_pump__write_date
+#: model:ir.model.fields,field_description:service_station.field_station_sales__write_date
+#: model:ir.model.fields,field_description:service_station.field_station_settings__write_date
+#: model:ir.model.fields,field_description:service_station.field_station_stations__write_date
+#: model:ir.model.fields,field_description:service_station.field_visa_line__write_date
+msgid "Last Updated on"
+msgstr "Dernière mise à jour le"
+
+#. module: service_station
+#: model:ir.model.fields,field_description:service_station.field_nozzle_misc__litres
+#: model:ir.model.fields,field_description:service_station.field_nozzle_record_line__litres
+#: model:ir.model.fields,field_description:service_station.field_nozzle_record_line__ltrs
+#: model_terms:ir.ui.view,arch_db:service_station.station_sales_report
+#: selection:station.sales,sales_mode_id:0
+#: selection:station.stations,sales_mode_id:0
+msgid "Litres"
+msgstr ""
+
+#. module: service_station
+#: selection:station.misc,state:0
+msgid "Locked"
+msgstr "Fermé"
+
+#. module: service_station
+#: model:ir.model,name:service_station.model_loyalty_cards_line
+msgid "Loyalty Card Payment Line"
+msgstr "Ligne de paiement par carte de fidélité"
+
+#. module: service_station
+#: model_terms:ir.ui.view,arch_db:service_station.station_sales_view_form
+msgid "Loyalty Cards"
+msgstr "Cartes de fidélité"
+
+#. module: service_station
+#: model:ir.model.fields,field_description:service_station.field_loyalty_cards_line__loyalty_cards_id
+msgid "Loyalty Cards Id"
+msgstr "Cartes de fidélité Id"
+
+#. module: service_station
+#: model:ir.model.fields,field_description:service_station.field_station_sales__loyalty_cards_line
+msgid "Loyalty Cards Line"
+msgstr "Ligne de Cartes de fidélité"
+
+#. module: service_station
+#: model_terms:ir.ui.view,arch_db:service_station.station_sales_report
+msgid "Loyalty Cards Records"
+msgstr "Registres de cartes de fidélité"
+
+#. module: service_station
+#: model:ir.model.fields,field_description:service_station.field_station_sales__loyalty_cards_total
+msgid "Loyalty Cards Total"
+msgstr "Total des cartes de fidélité"
+
+#. module: service_station
+#: model:ir.model.fields,field_description:service_station.field_station_sales__message_main_attachment_id
+msgid "Main Attachment"
+msgstr "Pièce jointe principale"
+
+#. module: service_station
+#: model:ir.model,name:service_station.model_station_nozzles
+msgid "Manage and support configurations for pump nozzles"
+msgstr "Gérer et prendre en charge les configurations des buses de pompe"
+
+#. module: service_station
+#: model:ir.model,name:service_station.model_station_sales
+msgid "Manage sales at a service station"
+msgstr "Gérer les ventes dans une station-service"
+
+#. module: service_station
+#: model:ir.model,name:service_station.model_station_csa
+msgid "Manage station employees."
+msgstr "Gérez les employés de la station."
+
+#. module: service_station
+#: model:ir.model,name:service_station.model_station_settings
+msgid "Manage the different settings for all the stations."
+msgstr "Gérez les différents paramètres pour toutes les stations."
+
+#. module: service_station
+#: model:ir.model.fields,field_description:service_station.field_station_stations__manager
+#: model:res.groups,name:service_station.service_station_group_manager
+msgid "Manager"
+msgstr "Gestionnaire"
+
+#. module: service_station
+#: model:ir.model.fields,field_description:service_station.field_nozzle_record_line__mclose
+#: model_terms:ir.ui.view,arch_db:service_station.station_sales_report
+msgid "Manual Close"
+msgstr "Fermeture manuelle"
+
+#. module: service_station
+#: model:ir.model.fields,field_description:service_station.field_station_misc__master_dip
+msgid "Master Dip"
+msgstr ""
+
+#. module: service_station
+#: model_terms:ir.ui.view,arch_db:service_station.station_misc_view_form
+msgid "Master Dips and Dry Pump run"
+msgstr ""
+
+#. module: service_station
+#: model:ir.model.fields,field_description:service_station.field_mpesa_line__message
+#: model:ir.model.fields,field_description:service_station.field_station_mpesa_records__message
+msgid "Message"
+msgstr ""
+
+#. module: service_station
+#: model:ir.model.fields,field_description:service_station.field_station_sales__message_has_error
+msgid "Message Delivery error"
+msgstr "Erreur d'envoi du message"
+
+#. module: service_station
+#: model:ir.model.fields,field_description:service_station.field_station_mpesa_records__message_id
+msgid "Message Id"
+msgstr ""
+
+#. module: service_station
+#: model:ir.model.fields,field_description:service_station.field_mpesa_line__message_id
+msgid "Message_ID"
+msgstr ""
+
+#. module: service_station
+#: model:ir.model.fields,field_description:service_station.field_station_sales__message_ids
+msgid "Messages"
+msgstr ""
+
+#. module: service_station
+#: selection:station.sales,sales_mode_id:0
+#: selection:station.stations,sales_mode_id:0
+msgid "Metres"
+msgstr "Mètres"
+
+#. module: service_station
+#: model:ir.ui.menu,name:service_station.service_station_miscelleneous
+msgid "Miscelleneous"
+msgstr "Divers"
+
+#. module: service_station
+#: model_terms:ir.ui.view,arch_db:service_station.station_misc_view_form
+msgid "Miscellenous Records"
+msgstr "Dossiers divers"
+
+#. module: service_station
+#: model:ir.model.fields,field_description:service_station.field_station_stations__sales_mode_id
+msgid "Mode Of Sales"
+msgstr "Mode de vente"
+
+#. module: service_station
+#: selection:station.misc,shift_id:0
+#: selection:station.sales,shift_id:0
+msgid "Morning"
+msgstr "Matin"
+
+#. module: service_station
+#: model_terms:ir.ui.view,arch_db:service_station.station_misc_view_search
+#: model_terms:ir.ui.view,arch_db:service_station.station_sales_view_search
+msgid "Morning Shift"
+msgstr "Poste du matin"
+
+#. module: service_station
+#: model_terms:ir.ui.view,arch_db:service_station.station_sales_view_form
+msgid "Mpesa"
+msgstr ""
+
+#. module: service_station
+#: model:ir.model.fields,field_description:service_station.field_mpesa_line__mpesa_id
+msgid "Mpesa Id"
+msgstr ""
+
+#. module: service_station
+#: model:ir.model.fields,field_description:service_station.field_station_sales__mpesa_line
+msgid "Mpesa Line"
+msgstr ""
+
+#. module: service_station
+#: model:ir.model.fields,field_description:service_station.field_mpesa_records_wizard__mpesa_messages
+msgid "Mpesa Messages"
+msgstr ""
+
+#. module: service_station
+#: model:ir.model,name:service_station.model_mpesa_line
+msgid "Mpesa Payment Line"
+msgstr ""
+
+#. module: service_station
+#: model_terms:ir.actions.act_window,help:service_station.action_station_mpesa_records
+#: model:ir.actions.act_window,name:service_station.action_station_mpesa_records
+#: model:ir.ui.menu,name:service_station.station_mpesa_records_menu
+#: model_terms:ir.ui.view,arch_db:service_station.station_mpesa_view_form
+#: model_terms:ir.ui.view,arch_db:service_station.station_sales_report
+#: model_terms:ir.ui.view,arch_db:service_station.station_sales_view_form
+msgid "Mpesa Records"
+msgstr ""
+
+#. module: service_station
+#: model:ir.model.fields,field_description:service_station.field_station_sales__mpesa_total
+msgid "Mpesa Total"
+msgstr ""
+
+#. module: service_station
+#: model:ir.model.fields,field_description:service_station.field_res_config_settings__name
+#: model:ir.model.fields,field_description:service_station.field_station_csa__name
+msgid "Name"
+msgstr "Nom"
+
+#. module: service_station
+#: code:addons/service_station/models/station_misc.py:12
+#: code:addons/service_station/models/station_misc.py:58
+#: code:addons/service_station/models/station_misc.py:60
+#: code:addons/service_station/models/station_sales.py:39
+#: code:addons/service_station/models/station_sales.py:41
+#, python-format
+msgid "New"
+msgstr ""
+
+#. module: service_station
+#: model:ir.model.fields,field_description:service_station.field_station_pump__activity_date_deadline
+#: model:ir.model.fields,field_description:service_station.field_station_sales__activity_date_deadline
+#: model:ir.model.fields,field_description:service_station.field_station_stations__activity_date_deadline
+msgid "Next Activity Deadline"
+msgstr "Date limite de l'Activité à Venir"
+
+#. module: service_station
+#: model:ir.model.fields,field_description:service_station.field_station_pump__activity_summary
+#: model:ir.model.fields,field_description:service_station.field_station_sales__activity_summary
+#: model:ir.model.fields,field_description:service_station.field_station_stations__activity_summary
+msgid "Next Activity Summary"
+msgstr "Résumé d'activité suivant"
+
+#. module: service_station
+#: model:ir.model.fields,field_description:service_station.field_station_pump__activity_type_id
+#: model:ir.model.fields,field_description:service_station.field_station_sales__activity_type_id
+#: model:ir.model.fields,field_description:service_station.field_station_stations__activity_type_id
+msgid "Next Activity Type"
+msgstr "Type d'Activités à Venir"
+
+#. module: service_station
+#: selection:station.misc,shift_id:0
+#: selection:station.sales,shift_id:0
+msgid "Night"
+msgstr "Nuit"
+
+#. module: service_station
+#: model_terms:ir.ui.view,arch_db:service_station.station_misc_view_search
+#: model_terms:ir.ui.view,arch_db:service_station.station_sales_view_search
+msgid "Night Shift"
+msgstr "Poste de nuit"
+
+#. module: service_station
+#: model:ir.model.fields,field_description:service_station.field_nozzle_misc__nozzle_id
+#: model:ir.model.fields,field_description:service_station.field_nozzle_record_line__nozzle_id
+#: model_terms:ir.ui.view,arch_db:service_station.station_sales_report
+msgid "Nozzle"
+msgstr "Buse"
+
+#. module: service_station
+#: model:ir.model.fields,field_description:service_station.field_station_nozzles__name
+msgid "Nozzle Label"
+msgstr "Étiquette de buse"
+
+#. module: service_station
+#: model:ir.model.fields,field_description:service_station.field_station_pump__nozzle_line
+msgid "Nozzle Line"
+msgstr "Ligne Buse"
+
+#. module: service_station
+#: model:ir.model.fields,field_description:service_station.field_station_misc__nozzle_misc_line
+msgid "Nozzle Misc Line"
+msgstr "ligne Divers Buse"
+
+#. module: service_station
+#: model:ir.model.fields,field_description:service_station.field_station_sales__nozzle_record_line
+msgid "Nozzle Record Line"
+msgstr "Ligne d'enregistrement des buses"
+
+#. module: service_station
+#: model_terms:ir.ui.view,arch_db:service_station.station_misc_view_form
+#: model_terms:ir.ui.view,arch_db:service_station.station_sales_view_form
+msgid "Nozzle Records"
+msgstr "Enregistrements de buses"
+
+#. module: service_station
+#: model_terms:ir.ui.view,arch_db:service_station.station_pump_view_form
+msgid "Nozzles"
+msgstr "Buses"
+
+#. module: service_station
+#: model:ir.model.fields,field_description:service_station.field_station_sales__message_needaction_counter
+msgid "Number of Actions"
+msgstr "Nombre d'actions"
+
+#. module: service_station
+#: model:ir.model.fields,field_description:service_station.field_station_sales__message_has_error_counter
+msgid "Number of error"
+msgstr "Nombre d'erreurs"
+
+#. module: service_station
+#: model:ir.model.fields,help:service_station.field_station_sales__message_needaction_counter
+msgid "Number of messages which requires an action"
+msgstr "Nombre de messages exigeant une action"
+
+#. module: service_station
+#: model:ir.model.fields,help:service_station.field_station_sales__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr "Nombre de messages avec des erreurs d'envoi"
+
+#. module: service_station
+#: model:ir.model.fields,help:service_station.field_station_sales__message_unread_counter
+msgid "Number of unread messages"
+msgstr "Nombre de messages non lus"
+
+#. module: service_station
+#: model_terms:ir.ui.view,arch_db:service_station.station_mpesa_view_search
+#: model_terms:ir.ui.view,arch_db:service_station.station_sales_view_search
+msgid "Order Date"
+msgstr "Date de la commande"
+
+#. module: service_station
+#: selection:station.pump,activity_state:0
+#: selection:station.sales,activity_state:0
+#: selection:station.stations,activity_state:0
+msgid "Overdue"
+msgstr "En retard"
+
+#. module: service_station
+#: model:ir.model.fields,field_description:service_station.field_station_csa__pending_total
+msgid "Pending Total"
+msgstr ""
+
+#. module: service_station
+#: model:ir.model.fields,field_description:service_station.field_station_csa__phone
+msgid "Phone"
+msgstr "Téléphone"
+
+#. module: service_station
+#: selection:station.pump,activity_state:0
+#: selection:station.sales,activity_state:0
+#: selection:station.stations,activity_state:0
+msgid "Planned"
+msgstr "Planifier"
+
+#. module: service_station
+#: model:ir.model.fields,field_description:service_station.field_nozzle_record_line__price
+#: model:ir.model.fields,field_description:service_station.field_station_nozzles__price
+#: model_terms:ir.ui.view,arch_db:service_station.station_sales_report
+msgid "Price"
+msgstr "Prix"
+
+#. module: service_station
+#: model:ir.model.fields,help:service_station.field_station_nozzles__price
+msgid "Price at which the product is sold to customers."
+msgstr "Prix auquel l'article est vendu aux clients."
+
+#. module: service_station
+#: model:ir.model.fields,field_description:service_station.field_station_misc__pump_id
+#: model:ir.model.fields,field_description:service_station.field_station_sales__pump
+#: model_terms:ir.ui.view,arch_db:service_station.station_sales_view_search
+msgid "Pump"
+msgstr "Pompe"
+
+#. module: service_station
+#: model_terms:ir.ui.view,arch_db:service_station.station_stations_view_form
+msgid "Pump Caption"
+msgstr "Etiquette de La Pompe"
+
+#. module: service_station
+#: model_terms:ir.ui.view,arch_db:service_station.station_pump_view_form
+msgid "Pump Form"
+msgstr "Formulaire Pompe"
+
+#. module: service_station
+#: model:ir.model.fields,field_description:service_station.field_station_nozzles__pump_id
+msgid "Pump Id"
+msgstr "Pompe Id"
+
+#. module: service_station
+#: model_terms:ir.ui.view,arch_db:service_station.station_pump_view_kanban
+msgid "Pump Kanban"
+msgstr "Pompe Kanban"
+
+#. module: service_station
+#: model:ir.model.fields,field_description:service_station.field_station_pump__name
+msgid "Pump Label"
+msgstr ""
+
+#. module: service_station
+#: model:ir.model.fields,field_description:service_station.field_station_stations__pump_line
+msgid "Pump Line"
+msgstr "Ligne Pompe"
+
+#. module: service_station
+#: model:ir.actions.act_window,name:service_station.station_pump_action
+#: model:ir.ui.menu,name:service_station.station_pump_menu
+#: model_terms:ir.ui.view,arch_db:service_station.station_stations_view_form
+msgid "Pumps"
+msgstr "Pomps"
+
+#. module: service_station
+#: model_terms:ir.ui.view,arch_db:service_station.station_csa_view_form
+msgid "Reconcile"
+msgstr "Lettrer"
+
+#. module: service_station
+#: model_terms:ir.ui.view,arch_db:service_station.action_csa_reconciliation_form
+msgid "Reconcile Csa Shorts and Excesses"
+msgstr ""
+
+#. module: service_station
+#: selection:csa.short.line,description:0
+#: model:ir.model.fields,field_description:service_station.field_csa_history_line__reconciled
+msgid "Reconciled"
+msgstr "Lettré"
+
+#. module: service_station
+#: model:ir.model,name:service_station.model_csa_short_line
+msgid "Record CSA shorts and excesses"
+msgstr "Enregistrer les courts et les excès CSA"
+
+#. module: service_station
+#: model_terms:ir.actions.act_window,help:service_station.station_miscelleneous_action
+msgid "Record Dry Pump Runs."
+msgstr "Enregistrer le fonctionnement de la pompe sèche"
+
+#. module: service_station
+#: model:ir.model,name:service_station.model_station_misc
+msgid "Record Station Miscelleneous Data"
+msgstr "Données diverses de la station"
+
+#. module: service_station
+#: model:ir.model.fields,field_description:service_station.field_station_sales__invoice_ref
+msgid "Ref"
+msgstr "Réf"
+
+#. module: service_station
+#: model:ir.model.fields,field_description:service_station.field_station_misc__seq
+msgid "Reference"
+msgstr "Référence"
+
+#. module: service_station
+#: model:ir.actions.act_window,name:service_station.action_mpesa_records
+msgid "Refund Deposits"
+msgstr "Remboursement des dépôts"
+
+#. module: service_station
+#: model:ir.model.fields,field_description:service_station.field_csa_reconciliation__balance
+msgid "Remaining Balance"
+msgstr ""
+
+#. module: service_station
+#: model_terms:ir.ui.view,arch_db:service_station.station_sales_view_form
+msgid "Reset To Draft"
+msgstr "Mettre au brouillon"
+
+#. module: service_station
+#: model:ir.model.fields,field_description:service_station.field_station_pump__activity_user_id
+#: model:ir.model.fields,field_description:service_station.field_station_sales__activity_user_id
+#: model:ir.model.fields,field_description:service_station.field_station_stations__activity_user_id
+msgid "Responsible User"
+msgstr "Responsable"
+
+#. module: service_station
+#: model_terms:ir.ui.view,arch_db:service_station.view_station_order_graph
+#: model_terms:ir.ui.view,arch_db:service_station.view_station_order_pivot
+msgid "Sales Analysis"
+msgstr "Analyse des ventes"
+
+#. module: service_station
+#: model:ir.model,name:service_station.model_nozzle_record_line
+msgid "Sales from a given pump"
+msgstr "Ventes d'une pompe donnée"
+
+#. module: service_station
+#: model_terms:ir.ui.view,arch_db:service_station.csa_short_line_view_search
+#: model_terms:ir.ui.view,arch_db:service_station.station_misc_view_search
+#: model_terms:ir.ui.view,arch_db:service_station.station_mpesa_view_search
+#: model_terms:ir.ui.view,arch_db:service_station.station_sales_view_search
+msgid "Search Description"
+msgstr "Description recherche"
+
+#. module: service_station
+#: model:ir.module.category,name:service_station.module_service_station_category
+#: model:ir.ui.menu,name:service_station.service_station_root
+msgid "Service Station"
+msgstr "Station Service"
+
+#. module: service_station
+#: model_terms:ir.ui.view,arch_db:service_station.station_sales_view_form
+msgid "Shell Pos"
+msgstr ""
+
+#. module: service_station
+#: model:ir.model.fields,field_description:service_station.field_shell_pos_line__shell_pos_id
+msgid "Shell Pos Id"
+msgstr ""
+
+#. module: service_station
+#: model:ir.model.fields,field_description:service_station.field_station_sales__shell_pos_line
+msgid "Shell Pos Line"
+msgstr ""
+
+#. module: service_station
+#: model:ir.model,name:service_station.model_shell_pos_line
+msgid "Shell Pos Payment Line"
+msgstr ""
+
+#. module: service_station
+#: model_terms:ir.ui.view,arch_db:service_station.station_sales_report
+msgid "Shell Pos Records"
+msgstr ""
+
+#. module: service_station
+#: model:ir.model.fields,field_description:service_station.field_station_sales__shell_pos_total
+msgid "Shell Pos Total"
+msgstr ""
+
+#. module: service_station
+#: model:ir.model.fields,field_description:service_station.field_station_misc__shift_id
+#: model:ir.model.fields,field_description:service_station.field_station_sales__shift_id
+msgid "Shift"
+msgstr "Poste"
+
+#. module: service_station
+#: selection:csa.history.line,description:0
+#: selection:csa.short.line,description:0
+msgid "Short"
+msgstr "Court"
+
+#. module: service_station
+#: model_terms:ir.ui.view,arch_db:service_station.station_csa_view_form
+msgid "Short And Excess"
+msgstr "Court et excédent"
+
+#. module: service_station
+#: model:ir.model.fields,field_description:service_station.field_station_csa__short_line
+msgid "Short Line"
+msgstr "Ligne courte"
+
+#. module: service_station
+#: model:ir.model.fields,field_description:service_station.field_station_sales__short_or_excess
+#: model:ir.model.fields,field_description:service_station.field_station_sales__short_or_excess_display
+msgid "Short/ Excess"
+msgstr "Court / Excédent"
+
+#. module: service_station
+#: model_terms:ir.ui.view,arch_db:service_station.csa_short_line_view_search
+msgid "Shorts"
+msgstr "Court"
+
+#. module: service_station
+#: model:ir.ui.menu,name:service_station.station_short_or_excess_menu
+msgid "Shorts & Excesses"
+msgstr "Court & Excédent"
+
+#. module: service_station
+#: model:ir.actions.act_window,name:service_station.station_short_or_excess_action
+msgid "Shorts And Excesses"
+msgstr "Court et Excédent"
+
+#. module: service_station
+#: model:ir.model.fields,field_description:service_station.field_station_csa__station_id
+#: model:ir.model.fields,field_description:service_station.field_station_misc__station_id
+#: model:ir.model.fields,field_description:service_station.field_station_sales__station_id
+#: model_terms:ir.ui.view,arch_db:service_station.station_pump_view_form
+#: model_terms:ir.ui.view,arch_db:service_station.station_sales_view_search
+msgid "Station"
+msgstr ""
+
+#. module: service_station
+#: model:ir.actions.act_window,name:service_station.station_csa_action
+msgid "Station Agents"
+msgstr "Agents Station"
+
+#. module: service_station
+#: model:ir.model.fields,field_description:service_station.field_station_pump__station_id
+msgid "Station Id"
+msgstr ""
+
+#. module: service_station
+#: model:ir.model.fields,field_description:service_station.field_nozzle_misc__nozzle_misc_id
+msgid "Station Misc Id"
+msgstr "Station Divers Id"
+
+#. module: service_station
+#: model:ir.actions.act_window,name:service_station.station_miscelleneous_action
+msgid "Station Miscelleneous"
+msgstr "Station Divers"
+
+#. module: service_station
+#: model:ir.model.fields,field_description:service_station.field_station_stations__name
+msgid "Station Name"
+msgstr "Nom Station"
+
+#. module: service_station
+#: model:ir.actions.act_window,name:service_station.service_station_action
+#: model:ir.actions.report,name:service_station.action_report_station_sales
+#: model:ir.ui.menu,name:service_station.service_station_menu
+msgid "Station Sales"
+msgstr "Station Vente"
+
+#. module: service_station
+#: model:ir.model.fields,field_description:service_station.field_nozzle_record_line__nozzle_record_id
+msgid "Station Sales Id"
+msgstr "Station Vente Id"
+
+#. module: service_station
+#: model:ir.actions.act_window,name:service_station.station_station_action
+#: model:ir.ui.menu,name:service_station.station_station_menu
+msgid "Stations"
+msgstr ""
+
+#. module: service_station
+#: model_terms:ir.ui.view,arch_db:service_station.station_stations_view_form
+msgid "Stations form"
+msgstr "Fourmulaire Stations"
+
+#. module: service_station
+#: model:ir.model.fields,field_description:service_station.field_station_misc__state
+#: model:ir.model.fields,field_description:service_station.field_station_pump__status
+#: model:ir.model.fields,field_description:service_station.field_station_sales__state
+msgid "Status"
+msgstr "État"
+
+#. module: service_station
+#: model:ir.model.fields,help:service_station.field_station_pump__activity_state
+#: model:ir.model.fields,help:service_station.field_station_sales__activity_state
+#: model:ir.model.fields,help:service_station.field_station_stations__activity_state
+msgid "Status based on activities\n"
+"Overdue: Due date is already passed\n"
+"Today: Activity date is today\n"
+"Planned: Future activities."
+msgstr "Statut basé sur les activités\n"
+"En retard : la date d'échéance est déjà dépassée\n"
+"Aujourd'hui : la date d'activité est aujourd'hui\n"
+"Planifiée : activités futures"
+
+#. module: service_station
+#: model:ir.model.fields,field_description:service_station.field_station_sales__amount_tax
+msgid "Tax Amount"
+msgstr "Montant de la taxe"
+
+#. module: service_station
+#: model_terms:ir.ui.view,arch_db:service_station.station_sales_view_search
+#: selection:station.sales,state:0
+msgid "To Be Invoiced"
+msgstr "Être facturée"
+
+#. module: service_station
+#: selection:station.pump,activity_state:0
+#: selection:station.sales,activity_state:0
+#: selection:station.stations,activity_state:0
+msgid "Today"
+msgstr "Aujourd'hui"
+
+#. module: service_station
+#: model:ir.model.fields,field_description:service_station.field_csa_reconciliation__total
+#: model_terms:ir.ui.view,arch_db:service_station.station_csa_view_form
+msgid "Total"
+msgstr ""
+
+#. module: service_station
+#: model:ir.model.fields,field_description:service_station.field_station_sales__amount_total
+msgid "Total Amount"
+msgstr "Montant total"
+
+#. module: service_station
+#: model:ir.model.fields,field_description:service_station.field_station_sales__total_credits
+msgid "Total Credits"
+msgstr "Crédits totaux"
+
+#. module: service_station
+#: model_terms:ir.ui.view,arch_db:service_station.station_misc_view_tree
+msgid "Total Dry Run"
+msgstr ""
+
+#. module: service_station
+#: model:ir.model.fields,field_description:service_station.field_station_misc__total_litres
+msgid "Total Litres"
+msgstr ""
+
+#. module: service_station
+#: model_terms:ir.ui.view,arch_db:service_station.station_sales_view_tree
+msgid "Total Sales Tax Included"
+msgstr "Taxe de vente totale incluse"
+
+#. module: service_station
+#: model_terms:ir.actions.act_window,help:service_station.service_station_action
+msgid "Track your service station sales progress."
+msgstr "Suivez la progression des ventes de votre station-service."
+
+#. module: service_station
+#: model_terms:ir.ui.view,arch_db:service_station.station_mpesa_view_search
+msgid "Un Assigned"
+msgstr "Non attribué"
+
+#. module: service_station
+#: selection:station.pump,status:0
+msgid "Under Maintenance"
+msgstr "En maintenance"
+
+#. module: service_station
+#: model:ir.model.fields,field_description:service_station.field_station_sales__message_unread
+msgid "Unread Messages"
+msgstr "Messages non lus"
+
+#. module: service_station
+#: model:ir.model.fields,field_description:service_station.field_station_sales__message_unread_counter
+msgid "Unread Messages Counter"
+msgstr "Compteur de messages non lus"
+
+#. module: service_station
+#: model:ir.model.fields,field_description:service_station.field_station_sales__amount_untaxed
+msgid "Untaxed Amount"
+msgstr "Montant HT"
+
+#. module: service_station
+#: model:res.groups,name:service_station.service_station_group_user
+msgid "User"
+msgstr "Utilisateur"
+
+#. module: service_station
+#: model_terms:ir.ui.view,arch_db:service_station.station_sales_view_form
+msgid "Visa"
+msgstr ""
+
+#. module: service_station
+#: model:ir.model.fields,field_description:service_station.field_visa_line__visa_id
+msgid "Visa Id"
+msgstr ""
+
+#. module: service_station
+#: model:ir.model.fields,field_description:service_station.field_station_sales__visa_line
+msgid "Visa Line"
+msgstr "Ligne Visa"
+
+#. module: service_station
+#: model:ir.model,name:service_station.model_visa_line
+msgid "Visa Payment Line"
+msgstr "Ligne de paiement Visa"
+
+#. module: service_station
+#: model_terms:ir.ui.view,arch_db:service_station.station_sales_report
+msgid "Visa Records"
+msgstr "Enregistrements Visa"
+
+#. module: service_station
+#: model:ir.model.fields,field_description:service_station.field_station_sales__visa_total
+msgid "Visa Total"
+msgstr "Total Visa"
+
+#. module: service_station
+#: model:ir.model.fields,field_description:service_station.field_station_sales__website_message_ids
+msgid "Website Messages"
+msgstr "Messages du site web"
+
+#. module: service_station
+#: model:ir.model.fields,help:service_station.field_station_sales__website_message_ids
+msgid "Website communication history"
+msgstr "Historique de communication du site web"
+
+#. module: service_station
+#: code:addons/service_station/models/station_sales.py:49
+#, python-format
+msgid "You can not delete an invoiced sale, consider archiving the record if you must remove it from the view."
+msgstr "Vous ne pouvez pas supprimer une vente facturée, pensez à archiver l'enregistrement si vous devez le supprimer de la vue."
+
+#. module: service_station
+#: model_terms:ir.ui.view,arch_db:service_station.station_sales_view_form
+msgid "station sales"
+msgstr "Ventes de Station Services"
+
+#. module: service_station
+#: model_terms:ir.ui.view,arch_db:service_station.station_stations_view_kanban
+msgid "stations Kanban"
+msgstr "station Kanban"
+

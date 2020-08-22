@@ -151,7 +151,7 @@ class StationSales(models.Model):
     @ api.constrains('fuel_sales', 'date')
     def approve_fuel_Sales(self):
         for rec in self:
-            if rec.date.strftime('%Y-%m-%d') > fields.Datetime.now().strftime('%Y-%m-%d'):
+            if rec.date.strftime('%d-%m-%Y') > fields.Date.today().strftime('%d-%m-%Y'):
                 raise ValidationError(
                     'You cannot approve sales for a future date')
 
@@ -314,7 +314,7 @@ class StationSales(models.Model):
     csa_id = fields.Many2one('station.csa', string='CSA', required=True)
     pump = fields.Many2one('station.pump', string='Pump', required=True)
     date = fields.Date(
-        string='Date', default=fields.Datetime.now, required=True)
+        string='Date', default=fields.Date.today(), required=True)
     amount_untaxed = fields.Monetary(string='Untaxed Amount', readonly=True)
     amount_tax = fields.Monetary(string='Tax Amount', readonly=True)
     currency_id = fields.Many2one('res.currency')
