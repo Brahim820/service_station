@@ -42,9 +42,7 @@ class NozzleRecordLine(models.Model):
         for rec in self:
             rec.update({'eclose': rec.mclose})
 
-    nozzle_id = fields.Many2one(
-        string='Nozzle', comodel_name='station.nozzles', required=True,
-        domain=[('wet_product', '=', True)])
+    nozzle_id = fields.Many2one(string='Nozzle', comodel_name='station.nozzles', required=True)
     mclose = fields.Float(string='Manual Close', digits=(12, 3))
     eclose = fields.Float(string='Elec. Close', digits=(12, 3), store=True)
     eopen = fields.Float(string='Elec. Open')

@@ -40,6 +40,9 @@
             <field name="model">station.mpesa.records</field>
             <field name="arch" type="xml">
                 <form string="Mpesa Records">
+                    <header>
+                        <button string="Get Messages Manually" name="get_messages_manually" type="object" class="oe_highlight" />
+                    </header>
                     <sheet>
                         <group>
                             <group>

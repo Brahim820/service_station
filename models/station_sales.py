@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-
 from datetime import datetime
 from odoo import models, fields, api, _
 from odoo.exceptions import ValidationError, UserError
@@ -151,7 +150,7 @@ class StationSales(models.Model):
     @ api.constrains('fuel_sales', 'date')
     def approve_fuel_Sales(self):
         for rec in self:
-            if rec.date.strftime('%Y-%m-%d') > fields.Datetime.now().strftime('%Y-%m-%d'):
+            if rec.date.strftime('%d-%m-%Y') > fields.Date.today().strftime('%d-%m-%Y'):
                 raise ValidationError(
                     'You cannot approve sales for a future date')
 
@@ -309,61 +308,38 @@ class StationSales(models.Model):
             lines.append((0, 0, val))
             rec.drop_line = lines
 
-    station_id = fields.Many2one(
-        'station.stations', string='Station')
+    station_id = fields.Many2one('station.stations', string='Station')
     csa_id = fields.Many2one('station.csa', string='CSA', required=True)
     pump = fields.Many2one('station.pump', string='Pump', required=True)
-    date = fields.Date(
-        string='Date', default=fields.Datetime.now, required=True)
+    date = fields.Date(string='Date', default=fields.Date.today(), required=True)
     amount_untaxed = fields.Monetary(string='Untaxed Amount', readonly=True)
     amount_tax = fields.Monetary(string='Tax Amount', readonly=True)
     currency_id = fields.Many2one('res.currency')
-    amount_total = fields.Monetary(
-        string='Total Amount', readonly=True)
-    fuel_sales = fields.Monetary(string='Fuel Sales', track_visibility='onchange',
-                                 compute='_compute_fuel_sales')
+    amount_total = fields.Monetary( string='Total Amount', readonly=True)
+    fuel_sales = fields.Monetary(string='Fuel Sales', track_visibility='onchange', compute='_compute_fuel_sales')
     total_credits = fields.Monetary(string='Total Credits', readonly=True)
-    cash_required = fields.Monetary(
-        string='Cash Required', track_visibility='onchange', readonly=True)
+    cash_required = fields.Monetary(string='Cash Required', track_visibility='onchange', readonly=True)
     short_or_excess = fields.Monetary(string='Short/ Excess', readonly=True)
-    short_or_excess_display = fields.Char(
-        string='Short/ Excess', readonly=True)
+    short_or_excess_display = fields.Char(string='Short/ Excess', readonly=True)
 
     visa_line = fields.One2many('visa.line', 'visa_id', string='Visa Line')
-    shell_pos_line = fields.One2many(
-        'shell.pos.line', 'shell_pos_id', string='Shell Pos Line')
-    loyalty_cards_line = fields.One2many(
-        'loyalty.cards.line', 'loyalty_cards_id', string='Loyalty Cards Line')
+    shell_pos_line = fields.One2many('shell.pos.line', 'shell_pos_id', string='Shell Pos Line')
+    loyalty_cards_line = fields.One2many('loyalty.cards.line', 'loyalty_cards_id', string='Loyalty Cards Line')
     mpesa_line = fields.One2many('mpesa.line', 'mpesa_id', string='Mpesa Line')
-    invoices_line = fields.One2many(
-        'invoices.line', 'invoices_id', string='Invoices Line')
+    invoices_line = fields.One2many('invoices.line', 'invoices_id', string='Invoices Line')
     drop_line = fields.One2many('drop.line', 'drop_id', string='Drop Line')
-    nozzle_record_line = fields.One2many(
-        'nozzle.record.line', 'nozzle_record_id', string='Nozzle Record Line')
-    visa_total = fields.Monetary(string='Visa Total', compute='_compute_total_amount',
-                                 track_visibility='onchange', store=True, readonly=True)
-    shell_pos_total = fields.Monetary(
-        string='Shell Pos Total', compute='_compute_total_amount', readonly=True, store=True)
-    loyalty_cards_total = fields.Monetary(
-        string='Loyalty Cards Total', compute='_compute_total_amount', readonly=True, store=True)
-    mpesa_total = fields.Monetary(
-        string='Mpesa Total', compute='_compute_total_amount', readonly=True, store=True)
-    invoices_total = fields.Monetary(
-        string='Invoices Total', compute='_compute_total_amount', readonly=True, store=True)
-    drop_total = fields.Monetary(
-        string='Cash Drop Total', compute='_compute_total_amount', readonly=True, store=True)
-    state = fields.Selection([
-        ('draft', 'Draft'),
-        ('approved', 'To Be Invoiced'),
-        ('invoiced', 'Invoiced'),
+    nozzle_record_line = fields.One2many('nozzle.record.line', 'nozzle_record_id', string='Nozzle Record Line')
+    visa_total = fields.Monetary(string='Visa Total', compute='_compute_total_amount', track_visibility='onchange', store=True, readonly=True)
+    shell_pos_total = fields.Monetary(string='Shell Pos Total', compute='_compute_total_amount', readonly=True, store=True)
+    loyalty_cards_total = fields.Monetary(string='Loyalty Cards Total', compute='_compute_total_amount', readonly=True, store=True)
+    mpesa_total = fields.Monetary(string='Mpesa Total', compute='_compute_total_amount', readonly=True, store=True)
+    invoices_total = fields.Monetary(string='Invoices Total', compute='_compute_total_amount', readonly=True, store=True)
+    drop_total = fields.Monetary(string='Cash Drop Total', compute='_compute_total_amount', readonly=True, store=True)
+    state = fields.Selection([('draft', 'Draft'), ('approved', 'To Be Invoiced'), ('invoiced', 'Invoiced'),
     ], string='Status', readonly=True, index=True, copy=False, default='draft', track_visibility='onchange')
-    shift_id = fields.Selection(
-        [('morning', 'Morning'), ('night', 'Night')], string='Shift', required=True)
-    invoices_count = fields.Integer(
-        string='Invoices', compute="get_invoices_count")
+    shift_id = fields.Selection([('morning', 'Morning'), ('night', 'Night')], string='Shift', required=True)
+    invoices_count = fields.Integer(string='Invoices', compute="get_invoices_count")
     invoice_ref = fields.Char(string='Ref')
-    sales_mode_id = fields.Selection(string='Choice', selection=[
-        ('metres', 'Metres'), ('litres', 'Litres')])
+    sales_mode_id = fields.Selection(string='Choice', selection=[('metres', 'Metres'), ('litres', 'Litres')])
 
-    invoice_ids = fields.Many2many(
-        "account.move", string='Invoices', compute="get_invoices_count", readonly=True, copy=False)
+    invoice_ids = fields.Many2many("account.move", string='Invoices', compute="get_invoices_count", readonly=True, copy=False)

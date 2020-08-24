@@ -1,6 +1,10 @@
 from odoo import models, fields, api
 
 
+class ProductTemplate(models.Model):
+    _inherit = 'product.template'
+    wet_product = fields.Boolean(string ='Carburant')
+
 class ServiceStation(models.Model):
     _name = 'station.stations'
     _inherit = ['mail.activity.mixin']
@@ -30,11 +34,9 @@ class StationPump(models.Model):
                 rec.status = 'down'
 
     name = fields.Char(string='Pump Label', required=True)
-    status = fields.Selection([('active', 'Active'), ('down', 'Under Maintenance')],
-                              string='Status', compute='set_status', readonly=True)
+    status = fields.Selection([('active', 'Active'), ('down', 'Under Maintenance')], string='Status', compute='set_status', readonly=True)
     station_id = fields.Many2one('station.stations', string='Station Id')
-    nozzle_line = fields.One2many(
-        'station.nozzles', 'pump_id', string='Nozzle Line')
+    nozzle_line = fields.One2many('station.nozzles', 'pump_id', string='Nozzle Line')
     is_active = fields.Boolean(string='Is Active', required=True, default=True)
 
 
@@ -44,8 +46,7 @@ class StationNozzles(models.Model):
     _rec_name = 'name'
 
     # name = fields.Char(string='Nozzle Label', required=True)
-    name = fields.Many2one('product.product', string='Nozzle Label',
-                           domain=[('wet_product', '=', True)])
+    name = fields.Many2one('product.template', string='Nozzle Label', domain=[('wet_product', '=', True)])
     inherited_id = fields.Integer(string='Id', related='name.id')
 
     price = fields.Float(string='Price', related='name.list_price')
@@ -78,17 +79,18 @@ class StationCsa(models.Model):
             record.history_line = lines
             record.short_line = [(5, 0, 0)]
 
+    def compute_pending_total(self):
+        self.pending_total = sum(self.short_line.mapped('amount'))
+
     name = fields.Char(string='Name', required=True)
     job_title = fields.Char(string='Job Title', default='CSA', readonly=True)
     email = fields.Char(string='Email')
     phone = fields.Char(string='Phone')
     id_number = fields.Char(string='Id Number')
-    station_id = fields.Many2one(
-        'station.stations', string='Station', required=True)
-    short_line = fields.One2many(
-        'csa.short.line', 'csa_id', string='Short Line')
-    history_line = fields.One2many(
-        'csa.history.line', 'csa_id', string='Histpry Line')
+    station_id = fields.Many2one('station.stations', string='Station', required=True)
+    short_line = fields.One2many('csa.short.line', 'csa_id', string='Short Line')
+    history_line = fields.One2many('csa.history.line', 'csa_id', string='Histpry Line')
+    pending_total = fields.Float(string='Pending Total', compute="compute_pending_total")
 
 
 class CSAShorts(models.Model):
@@ -97,10 +99,7 @@ class CSAShorts(models.Model):
     _rec_name = 'csa_id'
 
     date = fields.Date(string='Date')
-    description = fields.Selection([
-        ('short', 'Short'),
-        ('excess', 'Excess')
-    ], string='Description', required=True)
+    description = fields.Selection([('short', 'Short'), ('excess', 'Excess'), ('reconcile', 'Reconciled')], string='Description', required=True)
     amount = fields.Float(string='Amount')
     csa_id = fields.Many2one('station.csa', string='CSA Id')
 
@@ -110,10 +109,7 @@ class CsaShortsHistory(models.Model):
     _description = 'Keep track of all CSA short or excess that has been cleared'
 
     date = fields.Date(string='Date', readonly=True)
-    description = fields.Selection([
-        ('short', 'Short'),
-        ('excess', 'Excess')
-    ], string='Description', required=True, readonly=True)
+    description = fields.Selection([('short', 'Short'), ('excess', 'Excess')], string='Description', required=True, readonly=True)
     reconciled = fields.Char(string='Reconciled', readonly=True)
     amount = fields.Float(string='Amount', readonly=True)
     csa_id = fields.Many2one('station.csa', string='CSA Id')

@@ -1,6 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
-    <data noupdate="0">
+    
+	<record id="view_product_form_inherit" model="ir.ui.view">
+            <field name="name">product.template.form.inherit</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_only_form_view"/>
+            <field name="arch" type="xml">
+			    <field name="sale_ok" position="before">
+	                <div>
+	                    <field name="wet_product"/>
+	                    <label for="wet_product"/>
+	                </div>
+                </field>
+            </field>
+     </record>
+	
+	 <data noupdate="0">
         <!-- station.stations tree view -->
         <record id="station_stations_view_tree" model="ir.ui.view">
             <field name="name">station.stations.view.tree</field>
@@ -230,13 +245,14 @@
                 <form string="CSA Form">
                     <header>
                         <button type="object" string="Create Employee" class="oe_highlight" name="create_employee" />
-                        <button type="object" string="Create Payout" style="margin-left: 10px;" name="create_payout" />
+                        <button type="action" string="Reconcile" style="margin-left: 10px;" name="%(action_csa_reconciliation)d" context="{'default_total': pending_total}" />
                     </header>
                     <sheet>
                         <group>
                             <group>
                                 <field name="name" />
                                 <field name="job_title" />
+                                <field name="pending_total" invisible="1" />
                             </group>
                             <group>
                                 <field name="phone" />
